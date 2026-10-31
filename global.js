@@ -19,10 +19,10 @@ let pages = [
 
 // Where the site's root is, depending on where it's running:
 // - Locally (Live Server), the site sits at the server root → "/"
-// - On GitHub Pages, it lives under the repo name → "/Personal-Site-and-Portfolio/"
+// - On GitHub Pages, it lives under the repo name → "/personal-site/"
 const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
-  ? "/"                               // Local server
-  : "/Personal-Site-and-Portfolio/";  // GitHub Pages repo name
+  ? "/"                // Local server
+  : "/personal-site/"; // GitHub Pages repo name
 
 // Create an empty <nav> and put it at the very top of <body>
 let nav = document.createElement('nav');
