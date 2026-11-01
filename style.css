@@ -1,19 +1,51 @@
+/* Instrument Serif everywhere, with its italic for small details */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
+
 :root {
-  /* Accent color: forest green */
-  --color-accent: oklch(62% 15% 140);
+  /* Accent color for the older pages: the same calm green as the redesign */
+  --color-accent: #3F6B4F;
 
   /* Lets form controls (checkboxes, radio buttons, etc.) use it too */
   accent-color: var(--color-accent);
+
+  /* Design tokens for the redesign */
+  --ink: #1F2E26;            /* main text, dark buttons (green-black) */
+  --muted: #55635A;          /* secondary text (passes 4.5:1 on cream) */
+  --border: #E4DECD;         /* card borders, dividers */
+  --border-strong: #CFC9B4;  /* outline buttons */
+  --soft: #F1ECDD;           /* soft card background, row hover */
+  --bg: #FAF6EC;             /* the page: a slight cream white */
+  --accent: #3F6B4F;         /* links, primary accent */
+  --accent-hover: #2F533C;
+  --forest: #27402F;         /* the dark section */
+  --on-dark: #FAF6EC;
+  --on-dark-muted: #D3DACD;  /* body text on the dark section */
+  --on-dark-accent: #B5CFA8; /* eyebrow labels on the dark section */
+  --oak: #A9875A;            /* picture frames */
+  --mat: #FFFDF7;            /* the mat inside a picture frame */
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "Instrument Serif", Georgia, serif;
+  --max: 1120px;
+  --gutter: clamp(20px, 5vw, 48px);
 }
 html {
-  color-scheme: light dark;
+  /* Instrument Serif only comes in one weight. This stops the browser from faking
+     a bold version, so size is what sets headings apart. */
+  font-synthesis: none;
+
+  /* Light only for now. Change to "light dark" when dark colors are added. */
+  color-scheme: light;
 }
 
 body {
   /* Set line height to 1.5 times the font size
 	   and use the OS’s UI font as the website font
 	 */
-  font: 100%/1.5 system-ui;
+  font: 118%/1.5 var(--font-body);   /* this font runs small, so start a bit bigger */
+
+  /* Cream page and green-black text on every page */
+  background: var(--bg);
+  color: var(--ink);
 
   /* Keep lines from getting too long on wide screens */
   max-width: 100ch;
@@ -33,39 +65,100 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 400%;
 }
-nav {
-  /* Semi-transparent border color that looks subtle in both light and dark mode */
-  --border-color: oklch(50% 10% 200 / 40%);
-
+/* ===== Nav: "JJ" logo + bubble tabs (built in global.js) ===== */
+.site-nav {
   display: flex;
+  flex-wrap: wrap;                  /* tabs drop below the logo on phones */
+  justify-content: space-between;   /* logo on the left, tabs on the right */
+  align-items: center;
+  gap: 16px;
   /* Space between the nav and the page content */
-  margin-bottom: 1em;
-
-  /* Thin line under the whole nav */
-  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 2em;
+  font-family: var(--font-body);
 }
 
-
-nav a {
-  flex: 1;
-
-  text-decoration: none;  /* no underline */
-  color: inherit;         /* same color as the surrounding text, not blue/purple */
-  text-align: center;     /* center each link in its box */
-  padding: 0.5em;         /* breathing room around each link */
+.logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 23px;
+  letter-spacing: .02em;
+  color: var(--ink);
+  text-decoration: none;
 }
 
-nav a.current {
-  /* Thick bar under the current page's link */
-  border-bottom: 0.4em solid var(--border-color);
-
-  /* 0.5em - 0.4em = 0.1em, so the link stays the same height */
-  padding-bottom: 0.1em;
+/* The pill that holds all the tabs */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 28px;
+  background: var(--soft);
+  border: 1px solid var(--border);
 }
 
-nav a:hover {
-  border-bottom: 0.4em solid var(--color-accent);
-  padding-bottom: 0.1em;
+.tabs a {
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background .2s;
+
+  &:hover {
+    background: var(--border);
+  }
+
+  /* The page we're on: a solid tab */
+  &.current {
+    background: var(--ink);
+    color: var(--on-dark);
+    font-weight: 600;
+  }
+}
+
+/* Phones: smaller tabs so they fit, centered under the logo */
+@media (max-width: 480px) {
+  .tabs {
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .tabs a {
+    padding: 8px 11px;
+    font-size: 16px;
+  }
+}
+
+/* Over the home page's hero photo, the nav turns white and see-through */
+.hero {
+  .site-nav {
+    margin-bottom: 0;
+    padding: 28px clamp(20px, 5vw, 72px);
+  }
+
+  .logo {
+    color: var(--on-dark);
+  }
+
+  .tabs {
+    background: rgba(255, 255, 255, .14);
+    border-color: rgba(255, 255, 255, .28);
+  }
+
+  .tabs a {
+    color: var(--on-dark);
+
+    &:hover {
+      background: rgba(255, 255, 255, .28);
+    }
+
+    &.current {
+      background: var(--on-dark);
+      color: var(--ink);
+    }
+  }
 }
 
 input,
@@ -116,12 +209,18 @@ form button {
   }
   /* Year under each project description */
 .projects .project-year {
-  font-family: Baskerville, serif;        /* system font; serif is the fallback */
   font-variant-numeric: oldstyle-nums;    /* numbers that blend into the text */
   font-style: italic;
   color: color-mix(in oklch, canvastext, canvas 40%);  /* muted, works in light and dark */
   margin-top: 0;
 }
+/* Project photos: same shape on every card, cropped rather than stretched */
+.projects img {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+}
+
 /* Pie chart + legend side by side */
 .container {
   display: flex;
@@ -200,97 +299,704 @@ form button {
   border-radius: 0.5em;
   box-sizing: border-box;      /* padding doesn't push it wider than 100% */
 }
-/* ===== Resume page ===== */
-.resume {
-  /* Intro: name, tagline, contact line */
-  > header {
-    margin-bottom: 2em;
+/* ===== Home page ===== */
+/* Everything is nested under .home (a class on <body>), so other pages don't change */
+.home {
+  /* Undo the narrow centered column from the body rule: the hero is full width */
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
 
-    h2 {
-      font-size: 200%;
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
+
+  .wrap {
+    max-width: var(--max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .eyebrow {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Buttons (pill shaped) */
+  .btn {
+    display: inline-block;
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  .btn-dark {
+    background: var(--ink);
+    color: var(--on-dark);
+
+    &:hover {
+      opacity: .9;
+    }
+  }
+
+  .btn-outline {
+    border: 1px solid var(--border-strong);
+    color: var(--ink);
+
+    &:hover {
+      background: var(--soft);
+    }
+  }
+
+  .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Everything after the hero gets a solid background,
+     so it slides up over the photo as you scroll */
+  main,
+  .hello-band {
+    position: relative;
+    background: var(--bg);
+  }
+
+  /* 1. Hero: full-screen photo with the name on top */
+  .hero {
+    position: relative;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    color: var(--on-dark);
+
+    /* Darkens the photo so the white text is readable */
+    &::after {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      height: 100lvh;
+      z-index: -1;
+      background: rgba(20, 32, 24, .38);
+    }
+
+    /* Keep the nav and text above the dark layer */
+    > *:not(.hero-bg) {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  /* position: fixed pins the photo to the screen, so it stays still while the page
+     scrolls. z-index: -1 puts it behind everything. 100lvh keeps it tall enough
+     when a phone's address bar hides. */
+  .hero-bg {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: -1;
+    width: 100%;
+    height: 100lvh;
+    max-width: none;
+    object-fit: cover;
+    object-position: center 40%;
+    animation: drift 14s cubic-bezier(.2, .7, .2, 1) forwards;
+  }
+
+  .hero-text {
+    margin-top: auto;   /* pushes the text to the bottom of the hero */
+    padding: 0 clamp(20px, 5vw, 72px) 72px;
+    animation: rise 1.2s .3s cubic-bezier(.2, .7, .2, 1) both;
+
+    h1 {
       margin: 0;
+      font-weight: 400;
+      font-size: clamp(76px, 13vw, 200px);
+      line-height: 1.12;   /* enough room that the J in Justin clears the J in James */
+      letter-spacing: -.02em;
     }
 
     p {
-      margin: 0.25em 0;
-      /* Muted text: mix of text color and background, adapts to dark mode */
-      color: color-mix(in oklch, canvastext, canvas 40%);
+      margin: 24px 0 0;
+      font-size: 23px;
+      max-width: 520px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, .92);
     }
   }
 
-  /* Links in the content (not the nav): accent mixed toward the text color,
-     so darker in light mode and lighter in dark mode */
-  header a,
-  section a {
-    color: color-mix(in oklch, var(--color-accent), canvastext 30%);
-  }
-
-  /* Section titles: Education, Experience, ... */
-  section > h2 {
-    font-size: 110%;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    border-bottom: 2px solid var(--color-accent);
-    padding-bottom: 0.25em;
-    margin-top: 2em;
-  }
-
-  /* Each job / project gets a "trail marker" line */
-  article {
-    border-left: 3px solid var(--color-accent);
-    padding-left: 1em;
-    margin-block: 1.5em;
-
-    h3 {
-      margin: 0;
-    }
-
-    header p {
-      margin: 0;
-      /* Same muted text color as the intro */
-      color: color-mix(in oklch, canvastext, canvas 40%);
-    }
-
-    ul {
-      margin-top: 0.5em;
-    }
-  }
-
-  /* Skills as pill tags */
-  .skills {
+  /* 2. Intro: circle headshot + short text */
+  .intro {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5em;
-    list-style: none;
-    padding: 0;
+    gap: 56px;
+    align-items: center;
+    padding-block: 96px 48px;
+  }
 
-    li {
-      /* Light tint of the accent in light mode, dark tint in dark mode */
-      background: color-mix(in oklch, var(--color-accent), canvas 85%);
-      border: 1px solid color-mix(in oklch, var(--color-accent), canvas 60%);
-      border-radius: 999px;
-      padding: 0.25em 0.75em;
+  .headshot {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid var(--mat);
+    box-shadow: 0 10px 30px rgba(31, 46, 38, .16);
+    flex: 0 0 auto;
+  }
+
+  .intro-text {
+    flex: 1 1 420px;
+    min-width: 0;
+
+    .lead {
+      margin: 0 0 28px;
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+  }
+
+  /* 3. Proof strip: four real numbers */
+  .proof {
+    border-block: 1px solid var(--border);
+    margin-top: 48px;
+
+    .wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      padding-block: 36px;
+    }
+  }
+
+  .stat-num {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 800;
+  }
+
+  .stat-label {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 18px;
+  }
+
+  /* 4. Featured projects: a list of rows */
+  .featured {
+    padding-block: 96px 64px;
+  }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+
+    h2 {
+      margin: 0;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    a {
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--accent);
+
+      &:hover {
+        color: var(--accent-hover);
+      }
+    }
+  }
+
+  .project-list {
+    border-top: 1px solid var(--border);
+  }
+
+  .project-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    align-items: baseline;
+    padding: 24px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+    text-decoration: none;
+    transition: background .2s;
+
+    &:hover {
+      background: var(--soft);
+    }
+  }
+
+  .project-year {
+    flex: 0 0 64px;
+    color: var(--muted);
+    font-size: 18px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .project-title {
+    flex: 1 1 320px;
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  .project-skills {
+    flex: 0 1 280px;
+    color: var(--muted);
+    font-size: 18px;
+  }
+
+  /* 5. Outside of work: the dark section */
+  .life {
+    background-color: var(--forest);
+    /* Film grain: a small tile of light and dark specks, repeated. The specks
+       balance out, so the green stays the same color and only gains texture. */
+    background-image: url("images/web/site/grain.png");
+    color: var(--on-dark);
+    margin-top: 64px;
+    padding-block: 96px;
+    overflow-x: clip;   /* the frames run off the sides of the screen */
+
+    .eyebrow {
+      color: var(--on-dark-accent);
+    }
+
+    h2 {
+      margin: 0 0 48px;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      max-width: 720px;
+      line-height: 1.1;
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    p {
+      color: var(--on-dark-muted);
+      font-size: 20px;
+      line-height: 1.65;
+    }
+  }
+
+  .life-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 72px;
+
+    > * {
+      flex: 1 1 380px;
+      min-width: 0;
+    }
+  }
+
+  .abroad-photos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+
+    img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    img:first-child {
+      grid-column: 1 / -1;
+      height: 260px;
+    }
+  }
+
+  .video-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+
+    a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .1);
+      color: var(--on-dark);
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        background: rgba(255, 255, 255, .18);
+      }
+    }
+
+    /* Film title with its description underneath */
+    strong {
+      display: block;
+      font-weight: 600;
+    }
+
+    small {
+      display: block;
+      margin-top: 4px;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--on-dark-muted);
+    }
+  }
+
+  /* Landmarks: a row of picture frames that slides forever */
+  .marquee {
+    margin-top: 8px;
+
+    /* Stop sliding while someone is looking at or tabbing through the frames */
+    &:hover .marquee-track,
+    &:focus-within .marquee-track {
+      animation-play-state: paused;
+    }
+  }
+
+  /* The arrows sit beside the row, not inside it, so hovering one
+     doesn't trigger the pause above */
+  .marquee-wrap {
+    position: relative;
+  }
+
+  .marquee-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    width: 48px;
+    height: 48px;
+    transform: translateY(-50%);
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    background: var(--mat);
+    color: var(--ink);
+    font-size: 23px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .35);
+    transition: background .2s;
+
+    &:hover {
+      background: var(--soft);
+    }
+
+    &.prev {
+      left: clamp(8px, 2vw, 24px);
+    }
+
+    &.next {
+      right: clamp(8px, 2vw, 24px);
+    }
+  }
+
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding-block: 8px;
+    animation: slide 280s linear infinite;
+  }
+
+  /* Oak border + white mat, with the caption on the mat */
+  .frame {
+    /* Spacing is a margin, not a gap: it keeps the two halves of the track
+       exactly equal, which the loop depends on */
+    margin-right: 24px;
+    padding: 10px 10px 8px;
+    border: 6px solid var(--oak);
+    border-radius: 3px;
+    background: var(--mat);
+    color: var(--ink);
+    font: inherit;
+    cursor: zoom-in;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .4);
+    transition: transform .2s;
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+
+    img {
+      width: auto;
+      max-width: none;
+      height: 220px;
+    }
+
+    span {
+      display: block;
+      margin-top: 8px;
+      font-size: 16px;
+      color: var(--muted);
+    }
+  }
+
+  /* Headings for the parts below Barcelona */
+  .life .section-title {
+    margin: 72px 0 12px;
+  }
+
+  .section-text {
+    max-width: 720px;
+    margin: 0 0 28px;
+  }
+
+  /* Photos you can click to see bigger */
+  .zoom {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: zoom-in;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+      transition: transform .2s;
+    }
+
+    &:hover img {
+      transform: scale(1.015);
+    }
+
+    span {
+      display: block;
+      margin-top: 8px;
+      font-size: 17px;
+      color: var(--on-dark-muted);
+    }
+  }
+
+  .film {
+    width: 100%;
+    border-radius: 14px;
+    background: #000;
+  }
+
+  /* Mont Blanc collage: a mix of big and small tiles. Rows are a fixed height,
+     and "dense" lets smaller photos fill any gaps. The sizes below add up to
+     full rows, so no holes are left. */
+  .collage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 170px;
+    grid-auto-flow: dense;
+    gap: 12px;
+
+    /* Big tiles: 2 wide, 2 tall */
+    .zoom:nth-child(1),
+    .zoom:nth-child(6) {
+      grid-row: span 2;
+      grid-column: span 2;
+    }
+
+    /* Tall tiles */
+    .zoom:nth-child(2),
+    .zoom:nth-child(4),
+    .zoom:nth-child(8) {
+      grid-row: span 2;
+    }
+
+    .zoom:nth-child(9) img {
+      object-position: center 75%;
+    }
+
+    /* Wider screens: 5 columns, and two tiles become wide */
+    @media (min-width: 800px) {
+      grid-template-columns: repeat(5, 1fr);
+
+      .zoom:nth-child(7),
+      .zoom:nth-child(9) {
+        grid-column: span 2;
+      }
+    }
+  }
+
+  /* Jack of all trades: one column per sport, two tiles in each */
+  .trades {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+
+    h4 {
+      margin: 0 0 10px;
+      font: 400 22px var(--font-display);
+    }
+
+    video,
+    .zoom {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      margin-bottom: 12px;
+    }
+
+    video {
+      display: block;
+      object-fit: cover;
+      border-radius: 14px;
+      background: #000;
+    }
+  }
+
+  /* For the community: photos with captions */
+  .community {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+
+    img {
+      height: 300px;
+    }
+  }
+
+  /* Bigger view of a Landmarks photo */
+  .lightbox {
+    max-width: min(92vw, 1100px);
+    padding: 12px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--mat);
+    color: var(--ink);
+
+    &::backdrop {
+      background: rgba(20, 32, 24, .88);
+    }
+
+    img {
+      max-height: 78vh;
+      width: auto;
+      margin-inline: auto;
+    }
+
+    p {
+      margin: 10px 4px 2px;
+      font-size: 18px;
+      color: var(--muted);
+    }
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(31, 46, 38, .8);
+    color: var(--on-dark);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  /* 6. Quote + Say hello */
+  .quote {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 112px var(--gutter) 64px;
+    text-align: center;
+
+    blockquote {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    figcaption {
+      margin-top: 12px;
+      color: var(--muted);
+    }
+  }
+
+  .hello {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding-block: 48px 80px;
+    border-top: 1px solid var(--border);
+
+    h2 {
+      margin: 0;
+      font-size: 40px;
+      font-weight: 700;
     }
   }
 }
 
-/* ===== GitHub stats (home page) ===== */
-#profile-stats dl {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);  /* four equal columns */
-  text-align: center;
+/* Hero photo slowly zooms out when the page opens */
+@keyframes drift {
+  from { transform: scale(1.12) translateY(12px); }
+  to { transform: scale(1.02) translateY(0); }
 }
 
-#profile-stats dt {
-  grid-row: 1;                 /* all labels on the top row */
-  font-size: 80%;
-  text-transform: uppercase;
-  opacity: 0.7;                /* muted; works in light and dark mode */
+/* Hero text fades in and rises */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
 }
 
-#profile-stats dd {
-  grid-row: 2;                 /* all numbers on the bottom row */
-  margin: 0;                   /* browsers indent <dd> by default */
-  font-size: 200%;
-  font-weight: bold;
+/* Landmarks frames slide left by half the track (one full set of frames) */
+@keyframes slide {
+  to { transform: translateX(-50%); }
+}
+
+/* Turn off the motion for people who ask their device to reduce it */
+@media (prefers-reduced-motion: reduce) {
+  .home .hero-bg,
+  .home .hero-text,
+  .home .marquee-track {
+    animation: none;
+  }
+
+  /* Without the sliding, let people swipe through the frames instead */
+  .home .marquee {
+    overflow-x: auto;
+  }
+}
+
+/* Don't let the page scroll behind the bigger view of a photo */
+html:has(.lightbox[open]) {
+  overflow: hidden;
 }

@@ -11,10 +11,9 @@ function $$(selector, context = document) {
 // Internal pages use paths relative to the site root; external links use full URLs.
 let pages = [
   { url: '', title: 'Home' },
-  { url: 'projects/', title: 'Projects' },
+  { url: 'portfolio/', title: 'Portfolio' },
   { url: 'contact/', title: 'Contact' },
-  { url: 'resume/', title: 'Resume' },
-  { url: 'https://github.com/justinjames1793', title: 'GitHub' },
+  { url: 'https://github.com/justinjames1793', title: 'GitHub ↗' },
 ];
 
 // Where the site's root is, depending on where it's running:
@@ -24,11 +23,28 @@ const BASE_PATH = (location.hostname === "localhost" || location.hostname === "1
   ? "/"                // Local server
   : "/personal-site/"; // GitHub Pages repo name
 
-// Create an empty <nav> and put it at the very top of <body>
+// Create an empty <nav> and put it at the top of the page.
+// The home page has a full-screen hero photo, so there the nav goes inside the
+// hero to sit on top of the photo. Every other page puts it at the top of <body>.
 let nav = document.createElement('nav');
-document.body.prepend(nav);
+nav.className = 'site-nav';
+nav.setAttribute('aria-label', 'Main');
+(document.querySelector('.hero') ?? document.body).prepend(nav);
 
-// Add one link to the nav for each page in the list
+// "JJ" logo on the left, which links back to the home page
+let logo = document.createElement('a');
+logo.className = 'logo';
+logo.href = BASE_PATH;
+logo.textContent = 'JJ';
+logo.setAttribute('aria-label', 'Justin James, home');
+nav.append(logo);
+
+// The rounded "bubble" container that holds the page tabs
+let tabs = document.createElement('div');
+tabs.className = 'tabs';
+nav.append(tabs);
+
+// Add one link to the tabs for each page in the list
 for (let p of pages) {
   let url = p.url;
   let title = p.title;
@@ -55,52 +71,59 @@ for (let p of pages) {
     a.target = '_blank';
   }
 
-  // Add the finished link to the end of the nav
-  nav.append(a);
+  // Add the finished link to the end of the tabs
+  tabs.append(a);
 }
 
 // Dark mode switch ---
 
-// Is the OS currently in dark mode? Used to label the "Automatic" option.
-let osIsDark = matchMedia('(prefers-color-scheme: dark)').matches;
+// The redesign is light-only for now, so the switcher is turned off and the
+// site stays light (see color-scheme in style.css). The code is kept for later:
+// to bring it back, set this to true and define dark colors in style.css.
+const SHOW_THEME_SWITCHER = false;
 
-// Add the theme dropdown to the top of every page.
-// Each option's value is exactly what we'll set color-scheme to.
-document.body.insertAdjacentHTML(
-  'afterbegin',
-  `
-  <label class="color-scheme">
-    Theme:
-    <select>
-      <option value="light dark">Automatic (${osIsDark ? 'Dark' : 'Light'})</option>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-    </select>
-  </label>`,
-);
+if (SHOW_THEME_SWITCHER) {
+  // Is the OS currently in dark mode? Used to label the "Automatic" option.
+  let osIsDark = matchMedia('(prefers-color-scheme: dark)').matches;
 
-// Grab the dropdown so we can listen to it and update it
-let select = document.querySelector('.color-scheme select');
+  // Add the theme dropdown to the top of every page.
+  // Each option's value is exactly what we'll set color-scheme to.
+  document.body.insertAdjacentHTML(
+    'afterbegin',
+    `
+    <label class="color-scheme">
+      Theme:
+      <select>
+        <option value="light dark">Automatic (${osIsDark ? 'Dark' : 'Light'})</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>`,
+  );
 
-// Apply a color scheme to the page and keep the dropdown in sync
-function setColorScheme(colorScheme) {
-  // Set color-scheme on <html>, which the CSS uses to pick light/dark
-  document.documentElement.style.setProperty('color-scheme', colorScheme);
-  // Make the dropdown show the matching option
-  select.value = colorScheme;
+  // Grab the dropdown so we can listen to it and update it
+  let select = document.querySelector('.color-scheme select');
+
+  // Apply a color scheme to the page and keep the dropdown in sync
+  function setColorScheme(colorScheme) {
+    // Set color-scheme on <html>, which the CSS uses to pick light/dark
+    document.documentElement.style.setProperty('color-scheme', colorScheme);
+    // Make the dropdown show the matching option
+    select.value = colorScheme;
+  }
+
+  // On page load: if the user picked a theme before, re-apply it
+  if ('colorScheme' in localStorage) {
+    setColorScheme(localStorage.colorScheme);
+  }
+
+  // When the user changes the dropdown: apply it and remember it
+  select.addEventListener('input', function (event) {
+    console.log('color scheme changed to', event.target.value);
+    setColorScheme(event.target.value);
+    localStorage.colorScheme = event.target.value;   // persists across reloads
+  });
 }
-
-// On page load: if the user picked a theme before, re-apply it
-if ('colorScheme' in localStorage) {
-  setColorScheme(localStorage.colorScheme);
-}
-
-// When the user changes the dropdown: apply it and remember it
-select.addEventListener('input', function (event) {
-  console.log('color scheme changed to', event.target.value);
-  setColorScheme(event.target.value);
-  localStorage.colorScheme = event.target.value;   // persists across reloads
-});
 
 // contact form ---
 
@@ -207,9 +230,4 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     `;
     containerElement.appendChild(article);
   }
-}
-
-// Get public profile data for a GitHub user
-export async function fetchGitHubData(username) {
-  return fetchJSON(`https://api.github.com/users/${username}`);
 }

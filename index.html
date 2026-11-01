@@ -8,26 +8,241 @@
     <script type="module" src="global.js"></script>
     <script type="module" src="index.js"></script>
 </head>
-<body>
-    <h1>Justin James</h1>
-    <p>I'm a fourth-year Data Science major at UC San Diego with a passion for entrepreneurship and venture capital.
-My background spans full-stack development, data modeling, and leadership. As president of the Engineering
-Innovators and Entrepreneurs club, I focused on helping students take their startup ideas to the next level.
+<!-- The "home" class turns on the home page styles in style.css -->
+<body class="home">
 
-I currently work at UCSD's Office of Innovation and Commercialization (OIC), where I help run events and serve as
-a student representative showcasing what UCSD students have to offer. I also work on the finance team at CREDE,
-a mid-size real estate development company in Irvine, where I build data-driven dashboards and websites for both
-internal and external use.
+<!-- 1. HERO (global.js adds the nav at the top of this header) -->
+<header class="hero">
+  <img class="hero-bg" src="images/web/site/lac-blanc.jpg" alt="Lac Blanc above Chamonix, with hikers and the Aiguille Verte behind it">
+  <div class="hero-text">
+    <h1>Justin<br>James</h1>
+    <p>Data science student at UC San Diego. I build data tools, start things, and spend my free time in the mountains.</p>
+  </div>
+</header>
 
-Outside of work, you'll find me hiking, scootering, freediving, climbing, hitting the gym, or catching a good movie.</p>
-<img src="images/IMG_3856.jpeg" alt="Pic of mount blanc" width="600" height="500" />
-<p>Over the summer, I visited Mount Blanc. Here is a photo I took!</p>
-<div id="profile-stats">
-  <h2>My GitHub Stats</h2>
-</div>
-<h2>Latest Projects</h2>
-<div class="projects">
-  <!-- Dynamically added content will appear here -->
-</div>
+<main>
+  <!-- 2. INTRO -->
+  <section class="wrap intro">
+    <img class="headshot" src="images/web/site/headshot.jpg" alt="Portrait of Justin James in a navy suit">
+    <div class="intro-text">
+      <p class="eyebrow">Hi, I'm Justin</p>
+      <p class="lead">I study Data Science at UCSD's Halıcıoğlu Data Science Institute, graduating March 2028. I like turning messy data into something a team can actually use.</p>
+      <div class="btn-row">
+        <a class="btn btn-dark" href="portfolio/">See my portfolio →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PROOF STRIP -->
+  <section class="proof" aria-label="Highlights">
+    <div class="wrap">
+      <div><p class="stat-num">4.0</p><p class="stat-label">GPA, Provost Honors every quarter</p></div>
+      <div><p class="stat-num">2nd</p><p class="stat-label">DataFest 2026, Best Use of External Data</p></div>
+      <div><p class="stat-num">10,000+</p><p class="stat-label">posts/hour through the piracy pipeline I led data for</p></div>
+      <div><p class="stat-num">67</p><p class="stat-label">market-data sources rated for reliability at CREDE</p></div>
+    </div>
+  </section>
+
+  <!-- 4. FEATURED PROJECTS (written by hand for now; will come from projects.json later) -->
+  <section class="wrap featured">
+    <div class="section-head">
+      <h2>Featured projects</h2>
+      <a href="portfolio/">Full portfolio →</a>
+    </div>
+    <div class="project-list">
+      <a class="project-row" href="portfolio/">
+        <span class="project-year">2026</span>
+        <span class="project-title">Automating CREDE's Quarterly Market Report</span>
+        <span class="project-skills">Azure · CI/CD · data pipelines</span>
+      </a>
+      <a class="project-row" href="portfolio/">
+        <span class="project-year">2026</span>
+        <span class="project-title">Stream Enforcement: Piracy Detection</span>
+        <span class="project-skills">PostgreSQL · Docker · scraping</span>
+      </a>
+      <a class="project-row" href="portfolio/">
+        <span class="project-year">2026</span>
+        <span class="project-title">Hawaii Restaurant Success Predictor</span>
+        <span class="project-skills">scikit-learn · random forest · KMeans</span>
+      </a>
+      <a class="project-row" href="portfolio/">
+        <span class="project-year">2026</span>
+        <span class="project-title">Plaza: Campus Opportunities Platform</span>
+        <span class="project-skills">Founder · product · ML recommendations</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 5. OUTSIDE OF WORK -->
+  <section class="life">
+    <div class="wrap">
+      <p class="eyebrow">Outside of work</p>
+      <h2>Where I've been, and what I make when I'm not coding.</h2>
+
+      <div class="life-row">
+        <div class="abroad-photos">
+          <img src="images/web/barcelona/sagrada.jpg" loading="lazy" alt="Justin and two friends in front of the Sagrada Família">
+          <img src="images/web/barcelona/euro.jpg" loading="lazy" alt="Crowd celebrating with a Spain flag at the Arc de Triomf in Barcelona at night">
+          <img src="images/web/barcelona/sea-cave.jpg" loading="lazy" alt="Kayaks inside a sea cave">
+          <img src="images/web/barcelona/filming.jpg" loading="lazy" alt="Justin filming with a camera on a tripod">
+        </div>
+        <div>
+          <h3>A summer in Barcelona</h3>
+          <p>I spent four weeks studying film at UPF in Barcelona, fully immersed in Spanish culture. I filmed a skateboarding documentary, made short films, and visited museums with my class.</p>
+          <div class="video-links">
+            <a href="https://youtu.be/cfD3YIEFS2I" target="_blank">
+              <span class="video-text">
+                <strong>A Skater's Paintbrush</strong>
+                <small>A short film made for Documentary Workshop at UPF Barcelona. By Justin James and Jay Parmeshwar. Coproduced and edited by Trinity Digiacomo, Montunrayo 'Raye' Kehinde and Chae Young Kim.</small>
+              </span>
+              <span aria-hidden="true">▶</span>
+            </a>
+            <a href="https://youtu.be/hEtFfNKGoIY" target="_blank">
+              <span class="video-text">
+                <strong>Self Portrait</strong>
+                <small>A short video made for First Person Cinema at UPF.</small>
+              </span>
+              <span aria-hidden="true">▶</span>
+            </a>
+            <a href="https://youtu.be/HzUUjBFHfN4" target="_blank">
+              <span class="video-text">
+                <strong>I Love Spain</strong>
+                <small>A short film made while stuck inside sick in Spain during the last week of my summer abroad. Made for First Person Cinema at UPF Barcelona.</small>
+              </span>
+              <span aria-hidden="true">▶</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mont Blanc: paragraph + film, then a photo collage -->
+      <div class="life-row">
+        <div>
+          <h3>Mont Blanc</h3>
+          <p>A journey of discovery, adventure, and endurance. My friends and I took on the 10-day Mont Blanc challenge, where we gained more elevation than climbing Everest. Our time away from our phones, a bed, and the city taught us about ourselves and brought us even closer together.</p>
+        </div>
+        <video class="film" src="images/web/mont-blanc/tmb-film.mp4" poster="images/web/mont-blanc/tmb-film.jpg" controls playsinline preload="none" aria-label="Film from the Tour du Mont Blanc"></video>
+      </div>
+      <div class="collage">
+        <button class="zoom" type="button"><img src="images/web/mont-blanc/crew.jpg" width="1236" height="1400" loading="lazy" alt="Justin and five friends with packs on the Tour du Mont Blanc"></button>
+        <button class="zoom" type="button"><img src="images/web/mont-blanc/trail.jpg" width="1050" height="1400" loading="lazy" alt="Hiker on a trail through tall grass, with a horse grazing beside it"></button>
+        <button class="zoom" type="button"><img src="images/web/mont-blanc/tree.jpg" width="1400" height="933" loading="lazy" alt="A tree above pink wildflowers"></button>
+        <button class="zoom" type="button"><img src="images/web/mont-blanc/ladder.jpg" width="1050" height="1400" loading="lazy" alt="Hiker with a pack climbing a rocky section of trail"></button>
+        <button class="zoom" type="button"><img src="images/web/mont-blanc/meadow.jpg" width="788" height="1400" loading="lazy" alt="Lying in a green meadow below snowy peaks"></button>
+        <button class="zoom" type="button"><img src="images/web/mont-blanc/trient.jpg" width="1050" height="1400" loading="lazy" alt="Trient village and its pink church in Switzerland"></button>
+        <button class="zoom" type="button"><img src="images/web/mont-blanc/aiguilles.jpg" width="1400" height="788" loading="lazy" alt="Aiguille Verte and the Chamonix needles"></button>
+        <button class="zoom" type="button"><img src="images/web/mont-blanc/selfie.jpg" width="1050" height="1400" loading="lazy" alt="Selfie with two friends and a flock of sheep on the trail"></button>
+        <button class="zoom" type="button"><img src="images/web/mont-blanc/valley.jpg" width="1050" height="1400" loading="lazy" alt="Rock spire above a deep green valley"></button>
+      </div>
+
+      <h3 class="section-title">Landmarks</h3>
+    </div>
+
+    <!-- Scrolling picture frames. Sits outside .wrap so it runs the full width of the
+         screen. index.js repeats the frames so the loop never runs out. -->
+    <div class="marquee-wrap">
+      <button class="marquee-arrow prev" type="button" aria-label="Fast rewind through the landmarks">←</button>
+      <button class="marquee-arrow next" type="button" aria-label="Fast forward through the landmarks">→</button>
+    <div class="marquee">
+      <div class="marquee-track">
+        <button class="frame" type="button"><img src="images/web/landmarks/barcelona-fountain.jpg" width="1050" height="1400" loading="lazy" alt="Ornate golden fountain monument under a blue sky"><span>Barcelona</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/duomo.jpg" width="1050" height="1400" loading="lazy" alt="Florence Cathedral against a deep blue sky"><span>Florence Cathedral</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/opera-house.jpg" width="1050" height="1400" loading="lazy" alt="The Sydney Opera House under big clouds"><span>Sydney Opera House</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/bvi-boulders.jpg" width="1400" height="1050" loading="lazy" alt="Two people standing on giant boulders at the edge of the sea"><span>British Virgin Islands</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/hawaii-cliffs.jpg" width="1050" height="1400" loading="lazy" alt="Green sea cliffs under clouds, seen from the water"><span>Hawaii</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/fiji-beach.jpg" width="1050" height="1400" loading="lazy" alt="Palm tree leaning over a sandy beach and turquoise water"><span>Fiji</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/palazzo-vecchio.jpg" width="1400" height="1050" loading="lazy" alt="Palazzo Vecchio tower and piazza"><span>Palazzo Vecchio, Florence</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/catalina.jpg" width="1050" height="1400" loading="lazy" alt="Boats in a blue harbor below hillside homes"><span>Catalina Island</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/jump.jpg" width="1050" height="1400" loading="lazy" alt="Leaping across the gap on a rock arch"><span>Out exploring</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/costa-rica.jpg" width="1050" height="1400" loading="lazy" alt="Three people on horseback on a white sand beach"><span>Costa Rica</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/spain-castle.jpg" width="1400" height="1050" loading="lazy" alt="Stone castle above a busy beach"><span>Spain</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/australia-beach.jpg" width="1050" height="1400" loading="lazy" alt="White sand beach with driftwood and turquoise water"><span>Australia</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/david.jpg" width="886" height="1400" loading="lazy" alt="Michelangelo&#x27;s David under the gallery dome"><span>David, Florence</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/hawaii-blowhole.jpg" width="1050" height="1400" loading="lazy" alt="White water surging through a lava rock arch"><span>Hawaii</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/stanford.jpg" width="582" height="432" loading="lazy" alt="Big group gathered around a fire pit at night"><span>Stanford</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/bvi-cave.jpg" width="1050" height="1400" loading="lazy" alt="Glowing blue water between huge granite boulders"><span>British Virgin Islands</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/flatirons.jpg" width="1050" height="1400" loading="lazy" alt="Tilted red rock at sunset above a wide plain"><span>Out exploring</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/australia-pool.jpg" width="1050" height="1400" loading="lazy" alt="Ocean pool on the shore below stormy clouds"><span>Australia</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/fiji-sunset.jpg" width="1050" height="1400" loading="lazy" alt="Orange sunset behind palm trees over a boardwalk"><span>Fiji</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/arno.jpg" width="1050" height="1400" loading="lazy" alt="Sunset reflected in the Arno river"><span>The Arno, Florence</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/fiji-surf.jpg" width="828" height="696" loading="lazy" alt="Surfing a breaking wave"><span>Fiji</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/rainbow.jpg" width="1050" height="1400" loading="lazy" alt="Rainbow over a pine-filled canyon"><span>Out exploring</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/spain-coast.jpg" width="1050" height="1400" loading="lazy" alt="Rocky coastline and deep blue sea"><span>Spain</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/hawaii-wreck.jpg" width="1050" height="1400" loading="lazy" alt="Shipwrecked sailboat on a beach"><span>Hawaii</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/australia-coast.jpg" width="1050" height="1400" loading="lazy" alt="Pine tree and coastal plants above bright blue water"><span>Australia</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/bvi-water.jpg" width="1050" height="1400" loading="lazy" alt="Dark blue water and a green island at dusk"><span>British Virgin Islands</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/rock-arch.jpg" width="1050" height="1400" loading="lazy" alt="Natural rock arch beside a pine tree"><span>Out exploring</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/florence-bubbles.jpg" width="1050" height="1400" loading="lazy" alt="Soap bubbles floating past a medieval tower"><span>Florence</span></button>
+        <button class="frame" type="button"><img src="images/web/landmarks/canyon-pool.jpg" width="1050" height="1400" loading="lazy" alt="Green pool in a rocky canyon"><span>Out exploring</span></button>
+      </div>
+    </div>
+    </div>
+
+    <div class="wrap">
+      <!-- A Jack of All Trades: one column per sport -->
+      <h3 class="section-title">A Jack of all Trades</h3>
+      <p class="section-text">If it gets me outside and has a learning curve, I'm in. These days that means climbing, snowboarding, scootering and freediving.</p>
+      <div class="trades">
+        <div>
+          <h4>Climbing</h4>
+          <video src="images/web/trades/climbing.mp4" poster="images/web/trades/climbing.jpg" controls playsinline preload="none" aria-label="Justin climbing at a bouldering gym"></video>
+          <button class="zoom" type="button"><img src="images/web/trades/climbing-boulder.jpg" width="750" height="1000" loading="lazy" alt="Bouldering on a rock with a spotter"></button>
+        </div>
+        <div>
+          <h4>Snowboarding</h4>
+          <video src="images/web/trades/snowboard.mp4" poster="images/web/trades/snowboard.jpg" controls playsinline preload="none" aria-label="Justin jumping on a snowboard"></video>
+          <button class="zoom" type="button"><img src="images/web/trades/snowboard-sunset.jpg" width="562" height="1000" loading="lazy" alt="Standing with a snowboard above the clouds at sunset"></button>
+        </div>
+        <div>
+          <h4>Scootering</h4>
+          <video src="images/web/trades/scooter-1.mp4" poster="images/web/trades/scooter-1.jpg" controls playsinline preload="none" aria-label="Justin scootering at a skatepark"></video>
+          <video src="images/web/trades/scooter-2.mp4" poster="images/web/trades/scooter-2.jpg" controls playsinline preload="none" aria-label="Justin scootering down stairs at a skatepark"></video>
+        </div>
+        <div>
+          <h4>Freediving</h4>
+          <video src="images/web/trades/freedive.mp4" poster="images/web/trades/freedive.jpg" controls playsinline preload="none" aria-label="Underwater footage from a freedive"></video>
+          <button class="zoom" type="button"><img src="images/web/trades/turtle.jpg" width="750" height="1000" loading="lazy" alt="Sea turtle swimming over coral"></button>
+        </div>
+      </div>
+
+      <!-- For the community -->
+      <h3 class="section-title">For the community</h3>
+      <p class="section-text">With Homes of Hope, I got the chance to help build a home for a family in need in Mexico. Seeing what that home meant to them warmed my heart. Closer to home, I show up for beach cleanups and the Manhattan Beach Pier to Pier Friendship Walk.</p>
+      <div class="community">
+        <button class="zoom" type="button"><img src="images/web/community/homes-of-hope-build.jpg" width="1400" height="1050" loading="lazy" alt="On the Homes of Hope build site in Mexico, beside framing lumber"><span>Homes of Hope, Mexico</span></button>
+        <button class="zoom" type="button"><img src="images/web/community/homes-of-hope-group.jpg" width="1400" height="1050" loading="lazy" alt="Large group in front of a house at Homes of Hope in Mexico"><span>Homes of Hope, Mexico</span></button>
+        <button class="zoom" type="button"><img src="images/web/community/beach-cleanup.jpg" width="1050" height="1400" loading="lazy" alt="Group holding trash bags on the beach after a cleanup"><span>Beach cleanups</span></button>
+        <button class="zoom" type="button"><img src="images/web/community/pier-to-pier.jpg" width="618" height="1000" loading="lazy" alt="Group in event shirts at the Pier to Pier Friendship Walk"><span>Pier to Pier Friendship Walk</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. QUOTE -->
+  <figure class="quote">
+    <blockquote>“Don't waste your time chasing butterflies. Mend your garden, and the butterflies will come.”</blockquote>
+    <figcaption>Mario Quintana</figcaption>
+  </figure>
+</main>
+
+<!-- SAY HELLO: buttons only; the form lives on the Contact page -->
+<footer class="hello-band">
+  <div class="wrap hello">
+    <h2>Let's connect!</h2>
+    <div class="btn-row">
+      <a class="btn btn-dark" href="mailto:justin.j.1793@gmail.com">justin.j.1793@gmail.com</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/justin-james-8a8b292ba/" target="_blank">LinkedIn</a>
+      <a class="btn btn-outline" href="contact/">Contact form</a>
+      <a class="btn btn-outline" href="https://github.com/justinjames1793" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<!-- The bigger view of a Landmarks photo. index.js fills it in and opens it. -->
+<dialog class="lightbox">
+  <button class="lightbox-close" type="button" aria-label="Close photo">×</button>
+  <img src="" alt="">
+  <p></p>
+</dialog>
+
 </body>
 </html>
