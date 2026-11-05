@@ -6,24 +6,570 @@
     <title>Portfolio: Justin James</title>
     <link rel="stylesheet" href="../style.css">
     <script type="module" src="../global.js"></script>
-    <script type="module" src="projects.js"></script>
+    <script type="module" src="portfolio.js"></script>
 </head>
-<body>
-    <h1 class="projects-title">Projects</h1>
-    <div class="container">
-      <svg id="projects-pie-plot" viewBox="-50 -50 100 100"></svg>
-      <ul class="legend"></ul>
+<!-- The "portfolio" class turns on this page's styles in style.css.
+     Text in [square brackets] is a filler to replace. -->
+<body class="portfolio">
+
+<!-- "hero" tells global.js to put the nav in here, in its white style -->
+<header class="hero page-head">
+  <div class="wrap">
+    <h1>Portfolio</h1>
+    <p>What I've built, led and learned as a data science student at UC San Diego.</p>
+  </div>
+</header>
+
+<nav class="jump-links" aria-label="Sections of this page">
+  <a href="#skills">Skills</a>
+  <a href="#education">Education</a>
+  <!-- Each part gets a label link, then its sections -->
+  <span class="jump-sep" aria-hidden="true"></span>
+  <a class="jump-part" href="#experience">Experience</a>
+  <a href="#crede">CREDE</a>
+  <a href="#plaza">Plaza</a>
+  <a href="#oic">OIC</a>
+  <a href="#stream">Stream Enforcement</a>
+  <a href="#eiec">EIEC</a>
+  <a href="#sig">SIG</a>
+  <span class="jump-sep" aria-hidden="true"></span>
+  <a class="jump-part" href="#built">Projects</a>
+  <a href="#datafest">DataFest</a>
+  <a href="#projects">Class projects</a>
+</nav>
+
+<main>
+  <!-- SKILLS: portfolio.js draws the skill pills from lib/skills.json -->
+  <section class="wrap skills" id="skills">
+    <h2>Skills</h2>
+    <p class="skills-help">
+      <span id="skills-status" aria-live="polite"></span>
+      <button id="skills-clear" type="button" hidden>Clear</button>
+    </p>
+    <div id="skill-groups"></div>
+    <p class="also">Also: R, MATLAB, Git, Power Apps and Dataverse.</p>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="wrap entry" id="education">
+    <div class="entry-meta">
+      <h2>Education</h2>
+      <p class="role">UC San Diego, Halıcıoğlu Data Science Institute</p>
+      <p class="dates">Expected March 2028</p>
+    </div>
+    <div class="entry-body">
+      <p class="lead">B.S. Data Science. 4.0 GPA, Provost Honors every quarter.</p>
+      <p>Studied film abroad at UPF in Barcelona Summer 2026.</p>
+      <!-- Coursework: the highlights in one line, the full list in a <details> toggle
+           (plain HTML, no JavaScript). "now" marks classes this quarter (Fall 2026). -->
+      <h3>Coursework</h3>
+      <p>DSC 10, 20, 40A, 40B, 80 and 106 (Data Visualization), MATH 189 (Exploratory Data Analysis and Inference), ECON 120A (Econometrics) and MGT 153 (Information Technology in Business Analytics).</p>
+      <details class="more">
+        <summary>All 16 courses</summary>
+        <div class="coursework">
+          <div>
+            <h4>Data science and statistics</h4>
+            <ul>
+              <li><span class="code">DSC 10</span> Principles of Data Science</li>
+              <li><span class="code">DSC 20</span> Programming and Basic Data Structures for Data Science</li>
+              <li><span class="code">DSC 40A</span> Theoretical Foundations of Data Science I</li>
+              <li><span class="code">DSC 40B</span> Theoretical Foundations of Data Science II</li>
+              <li><span class="code">DSC 80</span> The Practice and Application of Data Science</li>
+              <li><span class="code">DSC 106</span> Introduction to Data Visualization <em class="now">now</em></li>
+              <li><span class="code">MATH 189</span> Exploratory Data Analysis and Inference <em class="now">now</em></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Economics</h4>
+            <ul>
+              <li><span class="code">ECON 1</span> Principles of Microeconomics</li>
+              <li><span class="code">ECON 2</span> Market Imperfections and Policy</li>
+              <li><span class="code">ECON 3</span> Principles of Macroeconomics</li>
+              <li><span class="code">ECON 120A</span> Econometrics A</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Business</h4>
+            <ul>
+              <li><span class="code">MGT 18</span> Managing Diverse Teams</li>
+              <li><span class="code">MGT 103</span> Product Marketing and Management <em class="now">now</em></li>
+              <li><span class="code">MGT 153</span> Information Technology in Business Analytics <em class="now">now</em></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Research and writing</h4>
+            <ul>
+              <li><span class="code">COGS 14A</span> Introduction to Research Methods</li>
+              <li><span class="code">MCWP 125</span> Argument and Analysis</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== PART 1: EXPERIENCE (jobs, roles and leadership) ===== -->
+  <div class="wrap part-head" id="experience">
+    <h2>Experience</h2>
+    <p>Internships, roles and leadership.</p>
+  </div>
+
+  <!-- CREDE: public copy follows the rules in portfolio-docs/crede/crede-portfolio-brief.md.
+       No company figures, no names but mine, no security details, and honest status words
+       (built / designed / approved / in progress). -->
+  <section class="wrap entry" id="crede" data-short="CREDE">
+    <div class="entry-meta">
+      <h2>CREDE Real Estate</h2>
+      <p class="role">Finance Intern, Irvine, CA</p>
+      <p class="dates">Aug 2026 to present</p>
+      <ul class="tags"><li>Python</li><li>Azure</li><li>Cosmos DB</li><li>Plotly</li><li>Excel</li><li>REST APIs</li></ul>
+    </div>
+    <div class="entry-body">
+      <p class="lead">Rebuilding a quarterly construction market report so every number traces back to a real source.</p>
+
+      <div class="result-stats">
+        <div><p class="stat-num">100+</p><p class="stat-label">hours of manual work per report, now being automated</p></div>
+        <div><p class="stat-num">300+</p><p class="stat-label">data series cataloged across the report's three sections</p></div>
+        <div><p class="stat-num">36</p><p class="stat-label">report pages traced, figure by figure, to the original publisher</p></div>
+        <div><p class="stat-num">2</p><p class="stat-label">client releases a quarter instead of one, approved by the CEO</p></div>
+      </div>
+
+      <p>CREDE, a development advisory and construction project management firm, sends clients a quarterly market report that answers one question: <em>should I build now?</em> Putting each report together was a manual process that took more than 100 hours. I'm automating it on a repeatable data foundation. I traced every figure in the report to its original publisher, restructured it around the client's question, and built a catalog of 300+ data series that records where each one comes from, how to pull it, how often it's released and exactly what it measures. That catalog is the spec for an Azure platform I co-designed with a fellow intern, approved by the CEO in October. The goal is full automation: an AI drafts each report from the latest data and the firm's past reports, and an employee reviews and approves it before it goes to clients.</p>
     </div>
 
-    <input
-      class="searchBar"
-      type="search"
-      aria-label="Search projects"
-      placeholder="🔍 Search projects…"
-    />
+    <figure class="arch">
+      <div class="arch-scroll">
+        <svg viewBox="0 0 1110 430" role="img" aria-label="Planned pipeline: scheduled Python workers pull from Census, FRED, BLS and SEC EDGAR, and paid or report-only sources are uploaded by hand and checked automatically. Every pull is saved with its date in Azure Cosmos DB. An AI drafts the report from that data and the firm's past reports, an employee reviews and approves the draft, and it goes to clients as a PDF">
+          <defs>
+            <marker id="arrC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk" d="M0,0 L10,5 L0,10 z"/></marker>
+            <marker id="arrCA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-acc" d="M0,0 L10,5 L0,10 z"/></marker>
+          </defs>
 
-    <div class="projects">
+          <text class="h" x="20" y="36">1. SOURCES</text>
+          <text class="h" x="260" y="36">2. PULL</text>
+          <text class="h" x="540" y="36">3. ARCHIVE</text>
+          <text class="h" x="790" y="36">4. DRAFT + APPROVE</text>
 
+          <!-- Sources -->
+          <rect class="bx" x="20" y="60" width="190" height="46" rx="6"/>
+          <text class="t" x="34" y="80">Census</text><text class="s" x="34" y="97">spending, starts</text>
+          <rect class="bx" x="20" y="116" width="190" height="46" rx="6"/>
+          <text class="t" x="34" y="136">FRED / ALFRED</text><text class="s" x="34" y="153">rates, history, past versions</text>
+          <rect class="bx" x="20" y="172" width="190" height="46" rx="6"/>
+          <text class="t" x="34" y="192">BLS</text><text class="s" x="34" y="209">price indexes, wages</text>
+          <rect class="bx" x="20" y="228" width="190" height="46" rx="6"/>
+          <text class="t" x="34" y="248">SEC EDGAR</text><text class="s" x="34" y="265">REIT and builder filings</text>
+          <rect class="bx" x="20" y="300" width="190" height="46" rx="6"/>
+          <text class="t" x="34" y="320">Paid and report-only</text><text class="s" x="34" y="337">subscriptions, PDFs</text>
+
+          <!-- Pull: one worker per provider, plus a checked manual path -->
+          <rect class="bx" x="260" y="60" width="200" height="46" rx="6"/>
+          <text class="t" x="274" y="80">Python worker</text><text class="s" x="274" y="97">runs on a schedule</text>
+          <rect class="bx" x="260" y="116" width="200" height="46" rx="6"/>
+          <text class="t" x="274" y="136">Python worker</text><text class="s" x="274" y="153">runs on a schedule</text>
+          <rect class="bx" x="260" y="172" width="200" height="46" rx="6"/>
+          <text class="t" x="274" y="192">Python worker</text><text class="s" x="274" y="209">runs on a schedule</text>
+          <rect class="bx" x="260" y="228" width="200" height="46" rx="6"/>
+          <text class="t" x="274" y="248">Python worker</text><text class="s" x="274" y="265">runs on a schedule</text>
+          <rect class="bx" x="260" y="300" width="200" height="46" rx="6"/>
+          <text class="t" x="274" y="320">Manual upload</text><text class="s" x="274" y="337">checked automatically</text>
+
+          <path class="ln" d="M210 83 H256" marker-end="url(#arrC)"/>
+          <path class="ln" d="M210 139 H256" marker-end="url(#arrC)"/>
+          <path class="ln" d="M210 195 H256" marker-end="url(#arrC)"/>
+          <path class="ln" d="M210 251 H256" marker-end="url(#arrC)"/>
+          <path class="ln" d="M210 323 H256" marker-end="url(#arrC)"/>
+          <text class="lb" x="260" y="376">New series: one line of config.</text>
+          <text class="lb" x="260" y="394">New provider: one new worker.</text>
+
+          <!-- Archive -->
+          <path class="ln" d="M460 83 L536 160" marker-end="url(#arrC)"/>
+          <path class="ln" d="M460 139 L536 172" marker-end="url(#arrC)"/>
+          <path class="ln" d="M460 195 L536 185" marker-end="url(#arrC)"/>
+          <path class="ln" d="M460 251 L536 198" marker-end="url(#arrC)"/>
+          <path class="ln" d="M460 323 L536 210" marker-end="url(#arrC)"/>
+          <rect class="bx-db" x="540" y="120" width="200" height="130" rx="6"/>
+          <text class="t" x="556" y="146">Azure Cosmos DB</text>
+          <line class="rule" x1="556" y1="160" x2="724" y2="160"/>
+          <text class="st" x="556" y="184">every pull saved</text>
+          <text class="st" x="556" y="204">with its pulled-on date</text>
+          <text class="s" x="556" y="230">keeps revision history</text>
+
+          <!-- Past reports feed the AI the firm's style and structure -->
+          <rect class="bx" x="540" y="290" width="200" height="46" rx="6"/>
+          <text class="t" x="556" y="310">Past CREDE reports</text><text class="s" x="556" y="327">style and structure</text>
+
+          <!-- Draft + approve: an AI writes the draft, a person signs off -->
+          <path class="ln" d="M740 160 H786" marker-end="url(#arrC)"/>
+          <path class="ln" d="M740 313 L786 192" marker-end="url(#arrC)"/>
+          <rect class="bx" x="790" y="120" width="290" height="80" rx="6"/>
+          <text class="t" x="806" y="146">AI drafts the report</text>
+          <text class="s" x="806" y="166">from the latest data, in the</text>
+          <text class="s" x="806" y="184">structure of past reports</text>
+          <path class="ln" d="M935 200 V236" marker-end="url(#arrC)"/>
+          <rect class="bx" x="790" y="240" width="290" height="60" rx="6"/>
+          <text class="t" x="806" y="266">An analyst reviews</text>
+          <text class="s" x="806" y="285">edits and approves every draft</text>
+
+          <!-- Output -->
+          <path class="ln-acc" d="M935 300 V336" marker-end="url(#arrCA)"/>
+          <rect class="out" x="850" y="340" width="170" height="60" rx="8"/>
+          <text class="t-acc" x="866" y="366">Client PDF</text><text class="s" x="866" y="386">two releases a quarter</text>
+        </svg>
+      </div>
+      <figcaption>The planned pipeline. The data platform was approved in October 2026 and is being built. Workers save every pull with its date, because agencies revise their numbers. An AI turns that data into a first draft, and nothing reaches clients until an employee approves it.</figcaption>
+    </figure>
+
+    <div class="entry-body entry-body-after">
+      <h3>Decisions I made</h3>
+      <ul>
+        <li><strong>Two releases a quarter.</strong> Market and cost data come out 2–4 weeks after quarter end, but sector data takes 3–7 weeks. Splitting the report into <em>Current Conditions</em> and <em>Sector Forecast</em> means neither waits for the other, and gives the firm two client touchpoints a quarter instead of one, a win for the marketing team as well as for readers. The CEO approved it in October.</li>
+        <li><strong>Publish our own sector forecast.</strong> Many sector forecasts came from firms that compete with CREDE. I designed two methods side by side: build it from supply, demand and price inputs, or take the median and range of other publishers' year-over-year changes.</li>
+        <li><strong>Compare like with like.</strong> Each series records what it measures and whose price it is (factory, contractor or retail). Sources are only combined when both match, and only by year-over-year change, never by level.</li>
+        <li><strong>Azure over an all-Power-Platform build.</strong> Co-designed with a fellow intern. I compared three options on cost, testing and upkeep. At Microsoft list prices, the Azure option runs about $9–15 a month today, while Dataverse storage costs about $40 per GB a month once the included allowance is used up.</li>
+      </ul>
+
+      <h3>Also at CREDE</h3>
+      <p>I built a monthly reporting layer for the finance team's forecast model, a Python and Plotly chart prototype on invented data, and a corporate card process that imports straight into the new accounting system. I'm now mapping how deals in HubSpot become projects in Sage Intacct, to remove double entry between the two.</p>
+
+      <!-- The rest, collapsed so recruiters can skip it -->
+      <details class="more">
+        <summary>More decisions and technical details</summary>
+        <h3>More decisions</h3>
+        <ul>
+          <li><strong>A four-check rule for new metrics.</strong> It must match one of the firm's product types or a national total, help answer "should I build now?", cover any geography (the firm is expanding) and not duplicate another row.</li>
+        </ul>
+        <h3>The data source catalog</h3>
+        <ul>
+          <li>Built and edited with Python scripts (openpyxl) that match the workbook's existing styling, dropdowns and conditional formatting.</li>
+          <li>openpyxl silently drops Excel's cross-sheet dropdowns on save. I caught it by diffing the file's structure before and after, and now re-add them after every scripted save.</li>
+          <li>Every edit to the shared file runs the same checks: structural diff, a headless LibreOffice recalculation to catch formula errors, and a rendered preview, before writing back with a dated backup.</li>
+          <li>Reference rows pull source details live from the other tabs with INDEX/MATCH, so there's one source of truth.</li>
+          <li>Series IDs were bulk-checked against BLS's own series files and FRED. Company rows use SEC EDGAR filings, with every ticker checked against the SEC's list. Anything I couldn't confirm is marked unconfirmed.</li>
+          <li>Agencies revise past numbers, so the design pulls from the original agency, backfills history from FRED and keeps past versions from ALFRED.</li>
+        </ul>
+        <h3>The reporting tools</h3>
+        <ul>
+          <li>The forecast model has 24 sheets and 48 charts, and openpyxl destroys charts on save, so the reporting tab was built on its own and moved in with Excel's Move or Copy.</li>
+          <li>The last closed month is counted from the workbook's "Actual" tags, never typed in. The budget-to-actual bridge must balance exactly, which catches missing drivers, wrong signs and moved rows in one check.</li>
+          <li>Rendering and inspecting the Plotly output turned up several bugs that raise no error, such as two dollar signs in one label switching on math rendering.</li>
+        </ul>
+        <h3>Stack</h3>
+        <p>Python, pandas, Plotly, openpyxl, REST APIs (FRED, Census, BLS, SEC EDGAR, EIA), Excel, Azure (Cosmos DB, Functions), Power Platform, HubSpot, Sage Intacct.</p>
+      </details>
     </div>
+  </section>
+
+  <!-- OFFICE OF INNOVATION & COMMERCIALIZATION -->
+  <section class="wrap entry" id="oic" data-short="OIC">
+    <div class="entry-meta">
+      <h2>UC San Diego Office of Innovation &amp; Commercialization</h2>
+      <p class="role">Entrepreneurship Center Assistant</p>
+      <p class="dates">Oct 2025 to present</p>
+      <ul class="tags"><li>Startups</li><li>Talent</li><li>Investor programs</li></ul>
+    </div>
+    <div class="entry-body">
+      <p class="lead">Connecting startups at UC San Diego Horizon with student talent.</p>
+      <p>I work with startups at Horizon, introduce them to students, and support investor programming, including Meet the VC office hours and events with BOW Capital. Chakra Tech hired EIEC members I introduced.</p>
+      <h3>What I do</h3>
+      <p class="filler">[Filler: a typical week, and the programs you run]</p>
+      <h3>Result</h3>
+      <p class="filler">[Filler: events run, startups helped, students placed]</p>
+    </div>
+  </section>
+
+  <!-- STREAM ENFORCEMENT: the full template, from portfolio-docs/stream enforcement -->
+  <section class="wrap entry" id="stream" data-short="Stream Enf.">
+    <div class="entry-meta">
+      <h2>Stream Enforcement</h2>
+      <p class="role">Data Lead, 451 Degrees</p>
+      <p class="dates">May to Aug 2026</p>
+      <ul class="tags"><li>Python</li><li>PostgreSQL</li><li>Docker</li><li>Telethon</li><li>Playwright</li></ul>
+    </div>
+    <div class="entry-body">
+      <p class="lead">Finding pirated live-sports streams while the event is still on.</p>
+
+      <div class="result-stats">
+        <div><p class="stat-num">10,000+</p><p class="stat-label">Reddit and Telegram posts processed an hour</p></div>
+        <div><p class="stat-num">~300</p><p class="stat-label">ranked candidate links surfaced an hour</p></div>
+        <div><p class="stat-num">~50</p><p class="stat-label">of the top candidates confirmed as piracy</p></div>
+      </div>
+
+      <h3>The problem</h3>
+      <p>During a live UFC card, links to illegal streams spread through Reddit threads and Telegram channels, and most are gone within hours. Rights holders need to find them early and prove what they are. Searching by hand can't keep up, and most shared links are noise: news, highlights, betting promos and spam.</p>
+
+      <h3>What we built</h3>
+      <p>A pipeline of six Docker services around one PostgreSQL database. Scrapers collect every link shared on Reddit and in 68 Telegram channels. Every two minutes, an investigation engine reads the conversation around each new link and scores it 0 to 100 for urgency. Sixteen headless Chromium crawlers then claim links highest-urgency first, follow them up to two levels deep, and check the page for twelve piracy signals, saving the full click path as evidence.</p>
+    </div>
+
+    <figure class="arch">
+      <div class="arch-scroll">
+        <svg viewBox="0 0 1110 610" role="img" aria-label="Pipeline: Reddit and Telegram are ingested into a shared Postgres schema; an investigation engine scores new links every two minutes; a pool of Playwright crawlers claims links by urgency, detects piracy and writes the evidence back, producing a ranked takedown queue.">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk" d="M0,0 L10,5 L0,10 z"/></marker>
+            <marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-acc" d="M0,0 L10,5 L0,10 z"/></marker>
+          </defs>
+
+          <text class="h" x="20" y="36">1. SOURCES</text>
+          <text class="h" x="270" y="36">2. INGEST</text>
+          <text class="h" x="580" y="36">3. INVESTIGATE</text>
+          <text class="h" x="860" y="36">4. CRAWL + DETECT</text>
+
+          <rect class="bx" x="20" y="60" width="200" height="50" rx="6"/>
+          <text class="t" x="34" y="82">tgstat.com</text><text class="s" x="34" y="100">public channel directory</text>
+          <rect class="bx" x="20" y="130" width="200" height="50" rx="6"/>
+          <text class="t" x="34" y="152">Telegram</text><text class="s" x="34" y="170">public stream channels</text>
+          <rect class="bx" x="20" y="200" width="200" height="50" rx="6"/>
+          <text class="t" x="34" y="222">Reddit</text><text class="s" x="34" y="240">event threads + comments</text>
+
+          <rect class="bx" x="270" y="60" width="230" height="50" rx="6"/>
+          <text class="t" x="284" y="82">channel_finder.py</text><text class="s" x="284" y="100">keyword search, manual review</text>
+          <rect class="bx" x="270" y="130" width="230" height="50" rx="6"/>
+          <text class="t" x="284" y="152">telegram_engine.py</text><text class="s" x="284" y="170">Telethon, polls every 5 min</text>
+          <rect class="bx" x="270" y="200" width="230" height="50" rx="6"/>
+          <text class="t" x="284" y="222">apify_reddit.py</text><text class="s" x="284" y="240">Apify, streamed in batches</text>
+
+          <path class="ln" d="M220 85 H266" marker-end="url(#arr)"/>
+          <path class="ln" d="M220 155 H266" marker-end="url(#arr)"/>
+          <path class="ln" d="M220 225 H266" marker-end="url(#arr)"/>
+          <path class="ln" d="M385 110 V127" marker-end="url(#arr)"/>
+          <text class="lb" x="394" y="124">channel list</text>
+
+          <rect class="bx" x="580" y="60" width="210" height="190" rx="6"/>
+          <text class="t" x="594" y="82">investigation_engine.py</text>
+          <text class="s" x="594" y="100">every 2 min, incremental</text>
+          <line class="rule" x1="594" y1="112" x2="776" y2="112"/>
+          <text class="st" x="594" y="132">1. pick best comment/URL</text>
+          <text class="st" x="594" y="154">2. build context window</text>
+          <text class="s" x="608" y="171">Reddit: reply chain</text>
+          <text class="s" x="608" y="187">Telegram: last 20 msgs</text>
+          <text class="st" x="594" y="210">3. score (ranker.py)</text>
+          <text class="s" x="608" y="227">urgency + likelihood</text>
+
+          <rect class="bx" x="860" y="60" width="230" height="50" rx="6"/>
+          <text class="t" x="874" y="82">crawl_engine.py</text><text class="s" x="874" y="100">4 browsers × 4 contexts</text>
+          <rect class="bx" x="860" y="130" width="230" height="50" rx="6"/>
+          <text class="t" x="874" y="152">Playwright BFS crawler</text><text class="s" x="874" y="170">depth 2, 10 links/page</text>
+          <rect class="bx" x="860" y="200" width="230" height="50" rx="6"/>
+          <text class="t" x="874" y="222">detector.py</text><text class="s" x="874" y="240">5 hard + 7 soft signals</text>
+          <path class="ln" d="M975 110 V127" marker-end="url(#arr)"/>
+          <path class="ln" d="M975 180 V197" marker-end="url(#arr)"/>
+
+          <rect class="band" x="20" y="300" width="1070" height="180" rx="10"/>
+          <text class="h" x="36" y="326">POSTGRESQL 16</text>
+          <text class="s" x="36" y="346">one schema for</text>
+          <text class="s" x="36" y="363">every source;</text>
+          <text class="s" x="36" y="380">doubles as the</text>
+          <text class="s" x="36" y="397">crawl job queue</text>
+
+          <rect class="bx-db" x="270" y="350" width="110" height="90" rx="6"/>
+          <text class="t" x="282" y="372">posts</text><text class="s" x="282" y="390">Reddit threads</text><text class="s" x="282" y="406">source</text><text class="s" x="282" y="422">subsource</text>
+          <rect class="bx-db" x="395" y="350" width="160" height="90" rx="6"/>
+          <text class="t" x="407" y="372">comments</text><text class="s" x="407" y="390">body, href</text><text class="s" x="407" y="406">score (votes/views)</text><text class="s" x="407" y="422">investigated_at</text>
+          <rect class="bx-db" x="580" y="350" width="210" height="90" rx="6"/>
+          <text class="t" x="592" y="372">investigation</text><text class="s" x="592" y="390">urgency_score</text><text class="s" x="592" y="406">stream_likelihood</text><text class="s" x="592" y="422">crawl state, piracy_score</text>
+          <rect class="bx-db" x="860" y="350" width="230" height="90" rx="6"/>
+          <text class="t" x="872" y="372">crawl_results</text><text class="s" x="872" y="390">link_chain (JSONB)</text><text class="s" x="872" y="406">final_url</text><text class="s" x="872" y="422">piracy_score</text>
+
+          <path class="ln" d="M325 250 V347" marker-end="url(#arr)"/>
+          <path class="ln" d="M450 250 V347" marker-end="url(#arr)"/>
+          <text class="lb" x="333" y="282">upsert</text>
+          <path class="ln" d="M500 155 H540 V347" marker-end="url(#arr)"/>
+          <text class="lb" x="503" y="148">msgs</text>
+
+          <path class="halo" d="M520 282 H640"/>
+          <path class="ln" d="M520 348 V282 H640 V253" marker-end="url(#arr)"/>
+          <text class="lb" x="648" y="276">new links</text>
+
+          <path class="ln" d="M730 250 V347" marker-end="url(#arr)"/>
+          <text class="lb" x="738" y="282">upsert</text>
+
+          <path class="ln" d="M790 395 H830 V85 H857" marker-end="url(#arr)"/>
+          <text class="lb" transform="translate(822 232) rotate(-90)" text-anchor="middle">claim by urgency</text>
+
+          <path class="halo" d="M890 318 H760"/>
+          <path class="ln" d="M890 250 V318 H760 V347" marker-end="url(#arr)"/>
+          <text class="lb" x="898" y="282">piracy score</text>
+          <path class="ln" d="M1030 250 V347" marker-end="url(#arr)"/>
+          <text class="lb" x="1038" y="282">evidence</text>
+
+          <path class="ln-acc" d="M845 480 V517" marker-end="url(#arrA)"/>
+          <rect class="out" x="600" y="520" width="490" height="70" rx="8"/>
+          <text class="t-acc" x="616" y="548">Ranked, evidence-backed takedown queue</text>
+          <text class="s" x="616" y="570">Adminer queries, CSV export for review</text>
+
+          <rect class="dash" x="20" y="520" width="555" height="70" rx="8"/>
+          <text class="t" x="36" y="546">Docker Compose: 6 services</text>
+          <text class="s" x="36" y="565">db, telegram_engine, scrape_reddit (on demand)</text>
+          <text class="s" x="36" y="581">investigation_engine, crawl_engine, adminer</text>
+        </svg>
+      </div>
+      <figcaption>Each stage runs as its own container and talks to the others only through Postgres. Telegram messages are stored as comments, so the scoring code works the same for both sources.</figcaption>
+    </figure>
+
+    <div class="entry-body entry-body-after">
+      <h3>My role</h3>
+      <p>I was Data Lead on a five-person team.</p>
+      <ul>
+        <li><strong>Designed the PostgreSQL schema.</strong> One data model for every source: posts and comments are tagged with source and channel, so adding a platform means writing a scraper, not changing the ranker. A timestamp on each comment lets the system re-score a link whenever new replies arrive.</li>
+        <li><strong>Built the Telegram ingestion.</strong> A Telethon client that polls public channels, pulls the first external link out of each message, and writes it into the shared schema with duplicate-safe batch inserts.</li>
+        <li><strong>Co-designed the urgency score.</strong> Intent words in the surrounding conversation ("mirror", "still up"), how many people share the link, engagement, event keywords in the post title and words in the URL itself, minus points for words like "highlights" or "odds". A second score ignores popularity so brand-new links still get checked.</li>
+      </ul>
+
+      <!-- The deep technical part, collapsed so recruiters can skip it -->
+      <details class="more">
+        <summary>Technical details</summary>
+        <h3>Engineering highlights</h3>
+        <ul>
+          <li>Crawlers claim work with <code>FOR UPDATE SKIP LOCKED</code> and a 90-second lease, so no two grab the same link and no Redis is needed.</li>
+          <li>Piracy pages often flash the stream and then redirect, so detection runs every 500 ms during page load and inspects every pop-up.</li>
+          <li>Video alone proves nothing, so "soft" video signals only count once a "hard" signal fires, such as a piracy ad network or a "Server 1 / Server 2" picker.</li>
+          <li>One <code>SPORT</code> setting switches channels, keywords and allowlists between UFC and the World Cup.</li>
+        </ul>
+
+        <h3>Stack</h3>
+        <p>Python 3.12, PostgreSQL 16, Docker Compose, Playwright, Telethon, Apify, Pydantic, pytest (88 tests).</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- EIEC -->
+  <section class="wrap entry" id="eiec" data-short="EIEC">
+    <div class="entry-meta">
+      <h2>Engineering Innovators &amp; Entrepreneurs Club</h2>
+      <p class="role">Co-President</p>
+      <p class="dates">Jan to May 2026</p>
+      <ul class="tags"><li>Leadership</li><li>Events</li></ul>
+    </div>
+    <div class="entry-body">
+      <p class="lead">Organized the Physician-AI Hackathon, pairing physicians with AI builders.</p>
+      <p>About 50 participants, 2 keynotes, industry judges and a $1,000 prize. I handled logistics, registrations and judge outreach.</p>
+      <img class="entry-photo" src="../images/web/portfolio/hackathon.jpg" alt="Team presenting in front of a projector at the Physician-AI Hackathon">
+      <h3>What else I led</h3>
+      <p class="filler">[Filler: the rest of your work as co-president, and more photos from the EIEC folder]</p>
+    </div>
+  </section>
+
+  <!-- SIG -->
+  <section class="wrap entry" id="sig" data-short="SIG">
+    <div class="entry-meta">
+      <h2>Sustainable Investment Group</h2>
+      <p class="role">R&amp;D Analyst, UC San Diego</p>
+      <p class="dates">Oct 2025 to present</p>
+      <ul class="tags"><li>Python</li><li>AWS</li><li>ESG research</li></ul>
+    </div>
+    <div class="entry-body">
+      <p class="lead">Python and AWS backend for an ESG portfolio optimizer.</p>
+      <p>I built the backend for ESG-focused portfolio optimization, moved backend services to AWS for speed and scale, researched ESG metrics for the stock analysis models, and maintain the group's web infrastructure.</p>
+      <h3>How it works</h3>
+      <p class="filler">[Filler: the optimizer's approach, and a diagram if you have one]</p>
+      <h3>Result</h3>
+      <p class="filler">[Filler: what the group does with it, plus links]</p>
+    </div>
+  </section>
+
+  <!-- PLAZA: public copy follows the rules in portfolio-docs/plaza/plaza-portfolio-brief.md (section 10).
+       We build it together: my co-founder leads architecture and most feature integration. Never "I built Plaza".
+       No teammate names, no traction numbers, plans in future tense, no repo link. -->
+  <section class="wrap entry" id="plaza" data-short="Plaza">
+    <div class="entry-meta">
+      <h2>Plaza</h2>
+      <p class="role">Founder</p>
+      <p class="dates">Aug 2026 to present</p>
+      <ul class="tags"><li>Product</li><li>Customer discovery</li><li>React</li><li>FastAPI</li><li>PostgreSQL</li><li>Supabase</li></ul>
+      <a class="visit" href="https://plazacampus.com" target="_blank" rel="noopener">Visit plazacampus.com ↗</a>
+    </div>
+    <div class="entry-body">
+      <p class="lead">The front door to everything happening on campus: club events, workshops, speakers and opportunities from every department, in one place.</p>
+      <p>The opportunities that shape a student's path already happen on campus, but they're scattered across hundreds of clubs, departments and centers that don't talk to each other. Working in UC San Diego's innovation office, I kept hearing students say "I didn't know this existed."</p>
+      <p>The idea started in EIEC's Lab to Market program with the Qualcomm Institute. I built the first working version myself, then brought on a co-founder, and together we rebuilt it as a production web and mobile app, now live at UC San Diego.</p>
+      <img class="entry-photo" src="../images/web/portfolio/plaza/landing.jpg" alt="Plaza's landing page: 'Find your next step on campus', with event cards for a research mentor workshop and startup office hours" loading="lazy">
+</div>
+  </section>
+
+  <!-- ===== PART 2: PROJECTS (competitions, class and personal work) =====
+       The id is "built" because "projects" is already the class projects section. -->
+  <div class="wrap part-head" id="built">
+    <h2>Projects</h2>
+    <p>Competitions, class work and things I built on my own.</p>
+  </div>
+
+  <!-- DATAFEST -->
+  <section class="wrap entry" id="datafest" data-short="DataFest">
+    <div class="entry-meta">
+      <h2>UC San Diego DataFest 2026</h2>
+      <p class="role">2nd place, Best Use of External Data</p>
+      <p class="dates">2026</p>
+      <ul class="tags"><li>External data</li><li>Web development</li></ul>
+    </div>
+    <div class="entry-body">
+      <p class="lead">Mapped chronic patient journeys and flagged high-risk communities.</p>
+      <p>My team joined external demographic data to the patient data. I also co-built and published the official DataFest 2026 event website.</p>
+      <h3>Our approach</h3>
+      <p class="filler">[Filler: the question, method and main finding, plus a chart]</p>
+      <h3>Links</h3>
+      <p class="filler">[Filler: event website, presentation, repo]</p>
+    </div>
+  </section>
+
+  <!-- CLASS AND PERSONAL PROJECTS -->
+  <section class="wrap entry entry-wide" id="projects" data-short="Projects">
+    <div class="entry-meta">
+      <h2>Class and Personal Projects</h2>
+    </div>
+    <div class="project-cards">
+      <article>
+        <p class="project-year">2026</p>
+        <h3>Hawaii Restaurant Success Predictor</h3>
+        <p>Predicted ratings for 4,301 Hawaii restaurants from choices made before opening. Feature engineering plus a random forest and KMeans geo-clustering raised R² from 0.004 to 0.13.</p>
+        <ul class="tags"><li>Python</li><li>scikit-learn</li></ul>
+        <p class="filler">[Web app link, repo]</p>
+      </article>
+      <article>
+        <p class="project-year">2026</p>
+        <h3>NYPD Complaints: Are Police Held Liable?</h3>
+        <p>DSC 106 persuasive visualization on ProPublica's civilian complaints data. I built an accountability funnel showing how few complaints end in discipline.</p>
+        <ul class="tags"><li>Data visualization</li></ul>
+        <p class="filler">[Project link]</p>
+      </article>
+      <article>
+        <p class="project-year">2026</p>
+        <h3>N-Gram Language Models</h3>
+        <p>DSC 80 project that scrapes Project Gutenberg, tokenizes the books, and builds N-gram models that generate new text in the style of Shakespeare and Homer.</p>
+        <ul class="tags"><li>Python</li><li>pandas</li><li>Web scraping</li></ul>
+        <p class="filler">[Repo link]</p>
+      </article>
+      <article>
+        <p class="project-year">2026</p>
+        <h3>Image Processing Toolkit &amp; KNN Classifier</h3>
+        <p>DSC 20 project with Karsten Lowe: an object-oriented Python image library built from raw RGB pixel arrays, with a k-nearest-neighbors classifier.</p>
+        <ul class="tags"><li>Python</li></ul>
+        <p class="filler">[Repo link]</p>
+      </article>
+      <article>
+        <p class="project-year">2025</p>
+        <h3>South Bay Chill</h3>
+        <p>Founded a community wellness brand in Hermosa Beach built around beach ice-bath events. I ran logistics, marketing and sales, and coordinated partners and sponsors.</p>
+        <ul class="tags"><li>Founding</li><li>Events</li></ul>
+        <p class="filler">[Photos from the South Bay Chill folder]</p>
+      </article>
+      <article>
+        <p class="project-year">2023</p>
+        <h3>Movie Review Analysis System</h3>
+        <p>A C++ text-search application over large sets of movie reviews, using a hash table for keyword lookup and a priority queue to rank results by relevance.</p>
+        <ul class="tags"><li>C++</li></ul>
+        <p class="filler">[Repo link]</p>
+      </article>
+      <article>
+        <p class="project-year">2022</p>
+        <h3>Interactive Campus Map</h3>
+        <p>A Google Maps-style web app recreating Stanford's campus map, with zoom, panning and clickable building markers.</p>
+        <ul class="tags"><li>JavaScript</li><li>HTML</li><li>CSS</li></ul>
+        <p class="filler">[Live link]</p>
+      </article>
+    </div>
+  </section>
+</main>
+
 </body>
 </html>

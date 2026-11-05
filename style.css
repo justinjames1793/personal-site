@@ -1000,3 +1000,553 @@ form button {
 html:has(.lightbox[open]) {
   overflow: hidden;
 }
+/* ===== Portfolio page ===== */
+/* Everything is nested under .portfolio (a class on <body>), so other pages don't change */
+.portfolio {
+  /* Undo the narrow centered column from the body rule, like the home page */
+  max-width: none;
+  margin: 0;
+  padding: 0;
+
+  .wrap {
+    max-width: var(--max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Links jump below the sticky bar instead of hiding under it */
+  [id] {
+    scroll-margin-top: 80px;
+  }
+
+  /* Header: the same grainy forest green as "Outside of work" */
+  .page-head {
+    position: relative;
+    background-color: var(--forest);
+    background-image: url("images/web/site/grain.png");
+    color: var(--on-dark);
+    padding-bottom: 56px;
+
+    h1 {
+      margin: 32px 0 0;
+      font-size: clamp(72px, 12vw, 160px);
+      font-weight: 400;
+      letter-spacing: -.02em;
+    }
+
+    p {
+      margin: 12px 0 0;
+      max-width: 620px;
+      font-size: 23px;
+      color: var(--on-dark-muted);
+    }
+  }
+
+  /* Sticky row of links to each section. Swipes sideways on phones. */
+  .jump-links {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    gap: 4px;
+    /* Lines the words up with the page content, allowing for each link's own padding */
+    padding: 10px max(calc(var(--gutter) - 14px), calc((100% - var(--max)) / 2 - 14px));
+    overflow-x: auto;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+
+    a {
+      flex: none;
+      padding: 6px 14px;
+      border-radius: 999px;
+      color: var(--ink);
+      font-size: 17px;
+      text-decoration: none;
+      transition: background .2s, opacity .2s;
+
+      &:hover {
+        background: var(--soft);
+      }
+
+      &.dim {
+        opacity: .35;
+      }
+    }
+
+    /* "Experience" and "Projects": the part labels, in green */
+    .jump-part {
+      color: var(--accent);
+    }
+
+    /* A thin line between the groups of links */
+    .jump-sep {
+      flex: none;
+      align-self: center;
+      width: 1px;
+      height: 1.2em;
+      margin-inline: 6px;
+      background: var(--border-strong);
+    }
+  }
+
+  /* Part headings (Experience, Projects): bigger than a section, with a green rule above */
+  .part-head {
+    padding-block: 96px 8px;
+
+    h2 {
+      margin: 0;
+      padding-top: 16px;
+      border-top: 3px solid var(--accent);
+      font-size: clamp(48px, 7vw, 72px);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 22px;
+    }
+  }
+
+  /* Skills: the pills drawn by portfolio.js */
+  .skills {
+    padding-block: 64px 32px;
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 48px;
+      font-weight: 400;
+    }
+  }
+
+  .skills-help {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 12px;
+    min-height: 2em;
+    margin: 0 0 16px;
+    color: var(--muted);
+
+    button {
+      padding: 2px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      background: none;
+      color: var(--ink);
+      cursor: pointer;
+    }
+  }
+
+  /* Skill pills: one row per group, label on the left, pills wrapping on the right */
+  #skill-groups {
+    display: grid;
+    gap: 10px;
+  }
+
+  .skill-group {
+    display: grid;
+    grid-template-columns: 9em minmax(0, 1fr);
+    align-items: baseline;
+    gap: 6px 16px;
+
+    @media (max-width: 600px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    h3 {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
+
+  .skill-pill {
+    padding: 3px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: var(--mat);
+    color: var(--ink);
+    font: inherit;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s;
+
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* The clicked skill: solid green */
+    &.selected {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--on-dark);
+    }
+  }
+
+  .also {
+    margin: 16px 0 0;
+    color: var(--muted);
+  }
+
+  /* One section: details on the left, the story on the right */
+  .entry {
+    display: grid;
+    grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+    gap: 16px 56px;
+    padding-block: 64px;
+    border-top: 1px solid var(--border);
+    transition: opacity .25s;
+
+    &.dim {
+      opacity: .3;
+    }
+
+    @media (max-width: 800px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  .entry-wide {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .entry-meta {
+    h2 {
+      margin: 0 0 10px;
+      font-size: 36px;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .role {
+      margin: 0;
+    }
+
+    .dates {
+      margin: 2px 0 14px;
+      color: var(--muted);
+      font-style: italic;
+    }
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      padding: 2px 12px;
+      border-radius: 999px;
+      background: color-mix(in oklch, var(--accent), var(--bg) 88%);
+      color: var(--accent-hover);
+      font-size: 16px;
+    }
+  }
+
+  .entry-body {
+    min-width: 0;
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    h3 {
+      margin: 32px 0 6px;
+      font-size: 26px;
+      font-weight: 400;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    code {
+      font-family: inherit;
+      font-style: italic;
+    }
+
+    /* This font has no bold, so color marks the lead-in words */
+    strong {
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    .lead {
+      font-size: 30px;
+      line-height: 1.25;
+    }
+  }
+
+  /* Coursework: subject groups sit side by side, and stack on phones */
+  .coursework {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+    gap: 20px 32px;
+    margin-bottom: 16px;
+
+    h4 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--accent);
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    /* Course code on its own small line above the title */
+    .code {
+      display: block;
+      font-size: 15px;
+      letter-spacing: .04em;
+      color: var(--muted);
+    }
+
+    /* "now" pill for classes this quarter */
+    .now {
+      margin-left: 4px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: color-mix(in oklch, var(--accent), var(--bg) 88%);
+      color: var(--accent-hover);
+      font-size: 14px;
+    }
+  }
+
+  /* Text still to replace: easy to spot, so it can't go live by accident */
+  .filler {
+    padding: 8px 14px;
+    border: 1px dashed var(--border-strong);
+    border-radius: 10px;
+    background: var(--soft);
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .entry-photo {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 14px;
+  }
+
+  /* Pill link under a section's tags, e.g. "Visit plazacampus.com" */
+  .visit {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--on-dark);
+    text-decoration: none;
+    transition: background .2s;
+
+    &:hover {
+      background: var(--accent-hover);
+    }
+  }
+
+  /* "Built with" list: layer name on the left, tools on the right */
+  .stack-list {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 6px 24px;
+    margin: 0 0 12px;
+
+    dt {
+      color: var(--muted);
+      font-size: 15px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      line-height: 1.9;
+    }
+
+    dd {
+      margin: 0;
+    }
+
+    @media (max-width: 500px) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+
+      dd {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  /* Architecture diagram: full width, swipes sideways on phones */
+  .arch {
+    grid-column: 1 / -1;
+    margin: 8px 0;
+
+    figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+    }
+  }
+
+  .arch-scroll {
+    overflow-x: auto;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--soft);
+  }
+
+  .arch svg {
+    display: block;
+    width: 100%;
+    min-width: 860px;
+    height: auto;
+
+    .bx { fill: var(--mat); stroke: var(--ink); stroke-width: 1.1; }
+    .bx-db { fill: var(--bg); stroke: var(--ink); stroke-width: 1.1; }
+    .band { fill: none; stroke: var(--muted); }
+    .dash { fill: none; stroke: var(--muted); stroke-dasharray: 4 4; }
+    .out { fill: var(--mat); stroke: var(--accent); stroke-width: 2; }
+    .ln { fill: none; stroke: var(--ink); stroke-width: 1.3; }
+    .ln-acc { fill: none; stroke: var(--accent); stroke-width: 2; }
+    .halo { fill: none; stroke: var(--soft); stroke-width: 7; }
+    .rule { stroke: var(--border-strong); }
+    .mk { fill: var(--ink); }
+    .mk-acc { fill: var(--accent); }
+    .t { font-size: 16px; fill: var(--ink); }
+    .t-acc { font-size: 18px; fill: var(--accent); }
+    .s { font-size: 13.5px; fill: var(--muted); }
+    .st { font-size: 14px; fill: var(--ink); }
+    .h { font-size: 13px; letter-spacing: .12em; fill: var(--muted); }
+    .lb { font-size: 13px; fill: var(--muted); }
+  }
+
+  .entry-body-after {
+    grid-column: 2;
+
+    @media (max-width: 800px) {
+      grid-column: 1;
+    }
+  }
+
+  .result-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 8px;
+
+    .stat-num {
+      margin: 0;
+      font-size: 40px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 18px;
+    }
+  }
+
+  /* "Show more" toggles (<details>): a pill-shaped summary that opens the rest */
+  .more {
+    margin: 16px 0;
+
+    summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 16px;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      color: var(--accent);
+      cursor: pointer;
+      list-style: none;   /* hide the default triangle... */
+
+      &::-webkit-details-marker {
+        display: none;    /* ...in Safari too */
+      }
+
+      /* Our own arrow, which turns when the toggle is open */
+      &::after {
+        content: "›";
+        transition: transform .2s;
+      }
+
+      &:hover {
+        background: var(--soft);
+      }
+    }
+
+    &[open] summary {
+      margin-bottom: 16px;
+
+      &::after {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  /* Class and personal projects */
+  .project-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 16px;
+
+    article {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--mat);
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .project-year {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .filler {
+      margin-top: auto;
+    }
+  }
+}

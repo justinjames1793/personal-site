@@ -1,0 +1,19 @@
+[
+  { "name": "Python", "group": "Languages", "in": ["stream", "sig", "projects", "crede", "plaza"] },
+  { "name": "SQL / PostgreSQL", "group": "Languages", "in": ["stream", "plaza"] },
+  { "name": "JavaScript / HTML / CSS", "group": "Languages", "in": ["datafest", "sig", "projects", "plaza"] },
+  { "name": "C++", "group": "Languages", "in": ["projects"] },
+  { "name": "pandas", "group": "Data and ML", "in": ["projects", "crede"] },
+  { "name": "scikit-learn", "group": "Data and ML", "in": ["projects"] },
+  { "name": "Data visualization", "group": "Data and ML", "in": ["projects", "crede"] },
+  { "name": "Data pipelines", "group": "Data and ML", "in": ["crede", "stream"] },
+  { "name": "Web scraping", "group": "Data and ML", "in": ["stream", "projects"] },
+  { "name": "Azure", "group": "Infrastructure", "in": ["crede"] },
+  { "name": "AWS", "group": "Infrastructure", "in": ["sig"] },
+  { "name": "Docker", "group": "Infrastructure", "in": ["stream"] },
+  { "name": "CI/CD", "group": "Infrastructure", "in": ["crede"] },
+  { "name": "Team leadership", "group": "Leading", "in": ["plaza", "stream", "eiec"] },
+  { "name": "Founding and product", "group": "Leading", "in": ["plaza", "projects"] },
+  { "name": "Events and programs", "group": "Leading", "in": ["oic", "eiec", "projects"] },
+  { "name": "Startup ecosystem", "group": "Leading", "in": ["plaza", "oic", "eiec"] }
+]
