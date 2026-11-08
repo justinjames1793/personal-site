@@ -37,6 +37,14 @@ html {
   color-scheme: light;
 }
 
+/* In-page links (like "Plaza" in the EIEC entry, or the jump bar) glide down
+   to their section instead of jumping. Skipped for people who turn off motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
   /* Set line height to 1.5 times the font size
 	   and use the OS’s UI font as the website font
@@ -1297,6 +1305,17 @@ html:has(.lightbox[open]) {
       font-size: 30px;
       line-height: 1.25;
     }
+
+    /* Plain text links (like "Plaza" in the EIEC entry): accent green,
+       and :visited keeps the same color so clicked links don't turn purple */
+    a:not([class]),
+    a:not([class]):visited {
+      color: var(--accent);
+    }
+
+    a:not([class]):hover {
+      color: var(--accent-hover);
+    }
   }
 
   /* Coursework: subject groups sit side by side, and stack on phones */
@@ -1358,6 +1377,17 @@ html:has(.lightbox[open]) {
     width: 100%;
     margin-top: 20px;
     border-radius: 14px;
+  }
+
+  /* Photo with a small caption underneath (e.g. the EIEC photos) */
+  .photo-fig {
+    margin: 0;
+
+    figcaption {
+      margin-top: 8px;
+      font-size: .9em;
+      color: var(--muted);
+    }
   }
 
   /* Pill link under a section's tags, e.g. "Visit plazacampus.com" */
@@ -1545,8 +1575,28 @@ html:has(.lightbox[open]) {
       font-style: italic;
     }
 
-    .filler {
+    /* Optional chart or screenshot inside a card */
+    img {
+      display: block;
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    /* "View on GitHub" link pinned to the bottom of the card */
+    .filler,
+    .card-link {
       margin-top: auto;
+    }
+
+    .card-link,
+    .card-link:visited {
+      color: var(--accent);
+    }
+
+    .card-link:hover {
+      color: var(--accent-hover);
     }
   }
 }
