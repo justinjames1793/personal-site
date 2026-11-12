@@ -12,8 +12,8 @@ function $$(selector, context = document) {
 let pages = [
   { url: '', title: 'Home' },
   { url: 'portfolio/', title: 'Portfolio' },
-  { url: 'contact/', title: 'Contact' },
-  { url: 'https://github.com/justinjames1793', title: 'GitHub ↗' },
+  // Contact and GitHub used to be tabs here. They now live as buttons at the
+  // bottom of each page (and in the Portfolio header), so the nav stays short.
 ];
 
 // Where the site's root is, depending on where it's running:
@@ -74,6 +74,56 @@ for (let p of pages) {
   // Add the finished link to the end of the tabs
   tabs.append(a);
 }
+
+// Nav that comes back when you scroll up ---
+// The real nav sits in the page header and scrolls away with it. A copy of it
+// is pinned to the top of the screen: hidden while you scroll down (so it
+// doesn't cover what you're reading), and sliding back in as soon as you
+// scroll up, wherever you are on the page.
+let pinnedNav = nav.cloneNode(true);
+pinnedNav.classList.add('site-nav-pinned');
+pinnedNav.setAttribute('aria-label', 'Main, pinned');
+pinnedNav.inert = true;   // while hidden, keyboard users can't tab into it
+document.body.append(pinnedNav);
+
+// Other sticky things (the Portfolio page's section links) move down by this
+// much while the pinned nav is showing. CSS reads it as var(--pinned-h).
+function measurePinnedNav() {
+  document.documentElement.style.setProperty('--pinned-h', pinnedNav.offsetHeight + 'px');
+}
+measurePinnedNav();
+addEventListener('resize', measurePinnedNav);
+
+let lastScrollY = scrollY;
+let scrollTicking = false;
+
+function updatePinnedNav() {
+  let y = scrollY;
+  // Has the real nav scrolled off the top of the screen yet?
+  let realNavGone = nav.getBoundingClientRect().bottom < 0;
+  // Ignore tiny wiggles (trackpads report lots of 1px moves)
+  let goingUp = y < lastScrollY - 4;
+  let goingDown = y > lastScrollY + 4;
+
+  let show = pinnedNav.classList.contains('shown');
+  if (!realNavGone || goingDown) show = false;
+  else if (goingUp) show = true;
+
+  pinnedNav.classList.toggle('shown', show);
+  pinnedNav.inert = !show;
+  document.documentElement.classList.toggle('nav-shown', show);
+
+  if (goingUp || goingDown) lastScrollY = y;
+  scrollTicking = false;
+}
+
+// Scroll events fire very often, so do the work at most once per frame
+addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    scrollTicking = true;
+    requestAnimationFrame(updatePinnedNav);
+  }
+}, { passive: true });
 
 // Dark mode switch ---
 

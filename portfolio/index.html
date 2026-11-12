@@ -17,6 +17,12 @@
   <div class="wrap">
     <h1>Portfolio</h1>
     <p>What I've built, led and learned as a data science student at UC San Diego.</p>
+    <!-- Contact right away, for recruiters who land here from an application -->
+    <ul class="head-contact">
+      <li><a href="mailto:justin.j.1793@gmail.com">justin.j.1793@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/justin-james-8a8b292ba/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+      <li><a href="https://github.com/justinjames1793" target="_blank" rel="noopener">GitHub ↗</a></li>
+    </ul>
   </div>
 </header>
 
@@ -35,7 +41,8 @@
   <span class="jump-sep" aria-hidden="true"></span>
   <a class="jump-part" href="#built">Projects</a>
   <a href="#datafest">DataFest</a>
-  <a href="#projects">Class projects</a>
+  <a href="#hawaii">Hawaii Predictor</a>
+  <a href="#south-bay-chill">South Bay Chill</a>
 </nav>
 
 <main>
@@ -44,7 +51,7 @@
     <h2>Skills</h2>
     <p class="skills-help">
       <span id="skills-status" aria-live="polite"></span>
-      <button id="skills-clear" type="button" hidden>Clear</button>
+      <button id="skills-clear" type="button" hidden>Show everything</button>
     </p>
     <div id="skill-groups"></div>
     <p class="also">Also: R, MATLAB, Git, Power Apps and Dataverse.</p>
@@ -56,26 +63,30 @@
       <h2>Education</h2>
       <p class="role">UC San Diego, Halıcıoğlu Data Science Institute</p>
       <p class="dates">Expected March 2028</p>
+      <p class="role">Study abroad: UPF Barcelona, Summer 2026</p>
     </div>
     <div class="entry-body">
       <p class="lead">B.S. Data Science. 4.0 GPA, Provost Honors every quarter.</p>
-      <p>Studied film abroad at UPF in Barcelona Summer 2026.</p>
       <!-- Coursework: the highlights in one line, the full list in a <details> toggle
            (plain HTML, no JavaScript). "now" marks classes this quarter (Fall 2026). -->
       <h3>Coursework</h3>
-      <p>DSC 10, 20, 40A, 40B, 80 and 106 (Data Visualization), MATH 189 (Exploratory Data Analysis and Inference), ECON 120A (Econometrics) and MGT 153 (Information Technology in Business Analytics).</p>
+      <p>DSC 10, 20, 40A, 40B, 80 and 106 (Data Visualization), MATH 189 (Exploratory Data Analysis and Inference), ECON 120A (Econometrics) and MGT 153 (Information Technology in Business Analytics). Before UC San Diego: linear algebra, multivariable calculus and data structures.</p>
       <details class="more">
-        <summary>All 16 courses</summary>
+        <summary>All courses</summary>
         <div class="coursework">
           <div>
             <h4>Data science and statistics</h4>
             <ul>
               <li><span class="code">DSC 10</span> Principles of Data Science</li>
-              <li><span class="code">DSC 20</span> Programming and Basic Data Structures for Data Science</li>
+              <li><span class="code">DSC 20</span> Programming and Basic Data Structures for Data Science
+                <span class="note">Built an image-processing library and a KNN image classifier in pure Python.</span></li>
               <li><span class="code">DSC 40A</span> Theoretical Foundations of Data Science I</li>
-              <li><span class="code">DSC 40B</span> Theoretical Foundations of Data Science II</li>
-              <li><span class="code">DSC 80</span> The Practice and Application of Data Science</li>
-              <li><span class="code">DSC 106</span> Introduction to Data Visualization <em class="now">now</em></li>
+              <li><span class="code">DSC 40B</span> Theoretical Foundations of Data Science II
+                <span class="note">Algorithms and runtime analysis: graph search, clustering, nearest neighbors.</span></li>
+              <li><span class="code">DSC 80</span> The Practice and Application of Data Science
+                <span class="note">Final project: the <a href="#hawaii">Hawaii restaurant predictor</a>. Also built n-gram language models.</span></li>
+              <li><span class="code">DSC 106</span> Introduction to Data Visualization <em class="now">now</em>
+                <span class="note">This site started as my DSC 106 lab work.</span></li>
               <li><span class="code">MATH 189</span> Exploratory Data Analysis and Inference <em class="now">now</em></li>
             </ul>
           </div>
@@ -101,6 +112,19 @@
             <ul>
               <li><span class="code">COGS 14A</span> Introduction to Research Methods</li>
               <li><span class="code">MCWP 125</span> Argument and Analysis</li>
+            </ul>
+          </div>
+          <!-- Taken before UC San Diego. Only the math and CS that matter for data science;
+               general-ed classes (chemistry, physics, English, ethics) are left out on purpose. -->
+          <div>
+            <h4>Math and CS before UC San Diego</h4>
+            <ul>
+              <li><span class="code">MATH 210 · Santa Barbara City College</span> Linear Algebra</li>
+              <li><span class="code">MATH 200 · Santa Barbara City College</span> Multivariable Calculus</li>
+              <li><span class="code">CS 108 · Santa Barbara City College</span> Discrete Structures</li>
+              <li><span class="code">CSCI 2270 · CU Boulder</span> Data Structures
+                <span class="note">C++: linked lists, stacks and queues, trees, graphs and hash tables.</span></li>
+              <li><span class="code">CS 106A · Stanford summer session</span> Programming Methodology</li>
             </ul>
           </div>
         </div>
@@ -230,33 +254,10 @@
       </ul>
 
       <h3>Also at CREDE</h3>
-      <p>I built a monthly reporting layer for the finance team's forecast model, a Python and Plotly chart prototype on invented data, and a corporate card process that imports straight into the new accounting system. I'm now mapping how deals in HubSpot become projects in Sage Intacct, to remove double entry between the two.</p>
+      <p>I built a monthly reporting layer for the finance team’s forecast model, a Python and Plotly chart prototype, and a corporate card process that imports straight into the new accounting system. I’m now streamlining how projects move through our internal tools, from first lead to final billing, to make the work easier for the whole team.</p>
 
-      <!-- The rest, collapsed so recruiters can skip it -->
-      <details class="more">
-        <summary>More decisions and technical details</summary>
-        <h3>More decisions</h3>
-        <ul>
-          <li><strong>A four-check rule for new metrics.</strong> It must match one of the firm's product types or a national total, help answer "should I build now?", cover any geography (the firm is expanding) and not duplicate another row.</li>
-        </ul>
-        <h3>The data source catalog</h3>
-        <ul>
-          <li>Built and edited with Python scripts (openpyxl) that match the workbook's existing styling, dropdowns and conditional formatting.</li>
-          <li>openpyxl silently drops Excel's cross-sheet dropdowns on save. I caught it by diffing the file's structure before and after, and now re-add them after every scripted save.</li>
-          <li>Every edit to the shared file runs the same checks: structural diff, a headless LibreOffice recalculation to catch formula errors, and a rendered preview, before writing back with a dated backup.</li>
-          <li>Reference rows pull source details live from the other tabs with INDEX/MATCH, so there's one source of truth.</li>
-          <li>Series IDs were bulk-checked against BLS's own series files and FRED. Company rows use SEC EDGAR filings, with every ticker checked against the SEC's list. Anything I couldn't confirm is marked unconfirmed.</li>
-          <li>Agencies revise past numbers, so the design pulls from the original agency, backfills history from FRED and keeps past versions from ALFRED.</li>
-        </ul>
-        <h3>The reporting tools</h3>
-        <ul>
-          <li>The forecast model has 24 sheets and 48 charts, and openpyxl destroys charts on save, so the reporting tab was built on its own and moved in with Excel's Move or Copy.</li>
-          <li>The last closed month is counted from the workbook's "Actual" tags, never typed in. The budget-to-actual bridge must balance exactly, which catches missing drivers, wrong signs and moved rows in one check.</li>
-          <li>Rendering and inspecting the Plotly output turned up several bugs that raise no error, such as two dollar signs in one label switching on math rendering.</li>
-        </ul>
-        <h3>Stack</h3>
-        <p>Python, pandas, Plotly, openpyxl, REST APIs (FRED, Census, BLS, SEC EDGAR, EIA), Excel, Azure (Cosmos DB, Functions), Power Platform, HubSpot, Sage Intacct.</p>
-      </details>
+      <h3>Stack</h3>
+      <p>Python, pandas, Plotly, openpyxl, REST APIs (FRED, Census, BLS, SEC EDGAR, EIA), Excel, Azure (Cosmos DB, Functions), Power Platform, HubSpot, Sage Intacct.</p>
     </div>
   </section>
 
@@ -478,7 +479,7 @@
     </div>
     <div class="entry-body">
       <p class="lead">ESG portfolio tools, research data and websites for a student-run investment group.</p>
-      <p>SIG is a student-led 501(c)(3) focused on sustainable, long-term investing. Its Research &amp; Development committee turns financial theory and ESG research into technical projects, centered on SIG's "ESG-efficient frontier" investment philosophy.</p>
+      <p>SIG is a student-led club focused on sustainable, long-term investing. Its Research &amp; Development committee turns financial theory and ESG research into technical projects, centered on SIG's "ESG-efficient frontier" investment philosophy.</p>
       <h3>ESG portfolio optimizer</h3>
       <p>A team-built platform (8 contributors) that finds the best risk-adjusted portfolio for a target ESG score. Market and ESG data flow through a Prefect pipeline into an S3-style data lake, a cvxpy and SciPy optimizer traces Sharpe ratio against ESG score, and results are backtested and served through a FastAPI API and a Streamlit dashboard.</p>
       <!-- TODO [CONFIRM]: add one sentence on Justin's specific part of the optimizer (no commits under his name in the repo).
@@ -512,98 +513,73 @@
 </div>
   </section>
 
-  <!-- ===== PART 2: PROJECTS (competitions, class and personal work) =====
-       The id is "built" because "projects" is already the class projects section. -->
+  <!-- ===== PART 2: PROJECTS (a competition, a class project, a personal venture) =====
+       Three short cards side by side. Each card has its own id and data-short,
+       so the skill filter in portfolio.js can fade a single card, and the jump
+       links at the top can point straight to it. Extra detail sits in a
+       "show more" toggle (<details>) so the cards stay short. -->
   <div class="wrap part-head" id="built">
     <h2>Projects</h2>
     <p>Competitions, class work and things I built on my own.</p>
   </div>
 
-  <!-- DATAFEST -->
-  <section class="wrap entry" id="datafest" data-short="DataFest">
-    <div class="entry-meta">
-      <h2>UC San Diego DataFest 2026</h2>
-      <p class="role">2nd place, Best Use of External Data</p>
-      <p class="dates">Apr 24 to 26, 2026</p>
-      <ul class="tags"><li>Python</li><li>pandas</li><li>scikit-learn</li><li>Census data</li><li>Folium maps</li></ul>
-    </div>
-    <div class="entry-body">
-      <p class="lead">Chronic Service Location Optimization: mapping where new clinics would do the most good.</p>
-      <p>In one weekend, my team (Aditya Kalita, Ben Hashim, Ishaan Tibdewal and I) analyzed 7.67M patient encounters from a regional health system. We followed each chronic patient's care over time instead of treating visits as isolated snapshots, then mapped where chronic-care burden is concentrated. Combining the records with U.S. Census geography and population data won us 2nd for Best Use of External Data.</p>
-      <h3>Our approach</h3>
-      <ul>
-        <li><strong>Cleaning.</strong> Joined six tables into one 8.1M-row master table and narrowed it to about 701,000 chronic-care encounters by removing accidents and injuries.</li>
-        <li><strong>Clustering.</strong> Built 27-feature patient profiles and used K-Means to group about 247K chronic patients into 5 care-journey types, each with a 0 to 1 risk score.</li>
-        <li><strong>Mapping.</strong> Linked patients to census block groups and mapped average risk and per-capita patient counts by neighborhood.</li>
-      </ul>
-      <h3>What we found</h3>
-      <p>Risk was much lower in rural areas and concentrated in specific neighborhoods around Topeka. Those high-risk, high-density block groups are the best targets for new clinics, outreach or preventive care.</p>
-      <figure class="photo-fig">
-        <img class="entry-photo" src="../images/web/portfolio/datafest/group.jpg" alt="Justin and two teammates holding their award certificates in front of the Chronic Service Location Optimization title slide, with two event organizers" loading="lazy">
-        <figcaption>Accepting 2nd place, Best Use of External Data.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- CLASS AND PERSONAL PROJECTS -->
-  <section class="wrap entry entry-wide" id="projects" data-short="Projects">
-    <div class="entry-meta">
-      <h2>Class and Personal Projects</h2>
-    </div>
+  <section class="wrap entry entry-wide" id="projects">
     <div class="project-cards">
-      <article>
-        <p class="project-year">2026</p>
+      <!-- DATAFEST -->
+      <article id="datafest" data-short="DataFest">
+        <p class="project-year">Apr 2026 · UC San Diego DataFest</p>
+        <h3>Where New Clinics Would Do the Most Good</h3>
+        <p class="card-award">2nd place, Best Use of External Data</p>
+        <p>In one weekend, my team of four analyzed 7.67M patient encounters from a regional health system. We grouped chronic patients by how their care unfolded over time, then used U.S. Census data to map the neighborhoods with the most risk.</p>
+        <img class="card-photo" src="../images/web/portfolio/datafest/group.jpg" alt="Justin and two teammates holding their award certificates in front of the Chronic Service Location Optimization title slide, with two event organizers" loading="lazy">
+        <details class="more">
+          <summary>How we did it</summary>
+          <ul>
+            <li><strong>Cleaning.</strong> Joined six tables into an 8.1M-row master table, then kept about 701,000 chronic-care encounters.</li>
+            <li><strong>Clustering.</strong> K-Means on 27-feature patient profiles sorted about 247K patients into 5 care-journey types, each with a 0 to 1 risk score.</li>
+            <li><strong>Mapping.</strong> Linked patients to census block groups and mapped risk and patients per capita.</li>
+          </ul>
+          <p>Risk was concentrated in specific neighborhoods around Topeka, the best targets for new clinics or outreach.</p>
+          <p class="team">Team: Aditya Kalita, Ben Hashim, Ishaan Tibdewal and me.</p>
+        </details>
+        <ul class="tags"><li>Python</li><li>pandas</li><li>scikit-learn</li><li>Census data</li><li>Folium maps</li></ul>
+      </article>
+
+      <!-- HAWAII (DSC 80 final project) -->
+      <article id="hawaii" data-short="Hawaii">
+        <p class="project-year">2026 · DSC 80 class project</p>
         <h3>Predicting Restaurant Success in Hawaii</h3>
-        <p>Solo DSC 80 project predicting a new restaurant's Google Maps rating from pre-opening choices like location, price and hours. A random forest with K-Means geographic clusters raised R² from 0.004 to 0.13. Location and price mattered most.</p>
+        <p>Solo project predicting a new restaurant's Google Maps rating from pre-opening choices like location, price and hours. A random forest with K-Means geographic clusters raised R² from 0.004 to 0.13. Location and price mattered most.</p>
         <img src="../images/web/portfolio/hawaii/feature-importance.png" alt="Bar chart of random forest feature importances: distances to the five geographic clusters rank highest, followed by price, competitor count, weekend hours, credit cards and delivery" loading="lazy">
         <ul class="tags"><li>Python</li><li>pandas</li><li>scikit-learn</li><li>K-Means</li><li>Plotly</li></ul>
         <a class="card-link" href="https://github.com/justinjames1793/hawaii-restaurant-success-predictor" target="_blank" rel="noopener">View on GitHub ↗</a>
       </article>
-      <article>
-        <p class="project-year">2026</p>
-        <h3>NYPD Complaints: Are Police Held Liable?</h3>
-        <p>DSC 106 persuasive visualization on ProPublica's civilian complaints data. I built an accountability funnel showing how few complaints end in discipline.</p>
-        <ul class="tags"><li>Data visualization</li></ul>
-        <p class="filler">[Project link]</p>
-      </article>
-      <article>
-        <p class="project-year">2026</p>
-        <h3>N-Gram Language Models</h3>
-        <p>DSC 80 project that scrapes Project Gutenberg, tokenizes the books, and builds N-gram models that generate new text in the style of Shakespeare and Homer.</p>
-        <ul class="tags"><li>Python</li><li>pandas</li><li>Web scraping</li></ul>
-        <p class="filler">[Repo link]</p>
-      </article>
-      <article>
-        <p class="project-year">2026</p>
-        <h3>Image Processing Toolkit &amp; KNN Classifier</h3>
-        <p>DSC 20 project with Karsten Lowe: an object-oriented Python image library built from raw RGB pixel arrays, with a k-nearest-neighbors classifier.</p>
-        <ul class="tags"><li>Python</li></ul>
-        <p class="filler">[Repo link]</p>
-      </article>
-      <article>
-        <p class="project-year">2025</p>
+
+      <!-- SOUTH BAY CHILL -->
+      <article id="south-bay-chill" data-short="South Bay Chill">
+        <p class="project-year">Jul to Aug 2025 · Hermosa Beach</p>
         <h3>South Bay Chill</h3>
-        <p>Founded a community wellness brand in Hermosa Beach built around beach ice-bath events. I ran logistics, marketing and sales, and coordinated partners and sponsors.</p>
+        <p>Founded a community wellness brand built around beach ice-bath events. I ran logistics, marketing and sales, and coordinated partners and sponsors.</p>
+        <!-- object-position nudges the 4:3 crop down so the ice baths stay in frame -->
+        <img class="card-photo" src="../images/web/portfolio/south-bay-chill/event.jpg" style="object-position: center 65%" alt="A South Bay Chill event on Hermosa Beach: people sitting in ice baths on the sand by the boardwalk, with a crowd and a white event tent behind them" loading="lazy">
         <ul class="tags"><li>Founding</li><li>Events</li></ul>
-        <p class="filler">[Photos from the South Bay Chill folder]</p>
-      </article>
-      <article>
-        <p class="project-year">2023</p>
-        <h3>Movie Review Analysis System</h3>
-        <p>A C++ text-search application over large sets of movie reviews, using a hash table for keyword lookup and a priority queue to rank results by relevance.</p>
-        <ul class="tags"><li>C++</li></ul>
-        <p class="filler">[Repo link]</p>
-      </article>
-      <article>
-        <p class="project-year">2022</p>
-        <h3>Interactive Campus Map</h3>
-        <p>A Google Maps-style web app recreating Stanford's campus map, with zoom, panning and clickable building markers.</p>
-        <ul class="tags"><li>JavaScript</li><li>HTML</li><li>CSS</li></ul>
-        <p class="filler">[Live link]</p>
+        <a class="card-link" href="https://www.instagram.com/southbaychill/" target="_blank" rel="noopener">See it on Instagram ↗</a>
       </article>
     </div>
   </section>
 </main>
+
+<!-- SAY HELLO: the same buttons as the bottom of the home page -->
+<footer class="hello-band">
+  <div class="wrap hello">
+    <h2>Let's connect!</h2>
+    <div class="btn-row">
+      <a class="btn btn-dark" href="mailto:justin.j.1793@gmail.com">justin.j.1793@gmail.com</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/justin-james-8a8b292ba/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-outline" href="https://github.com/justinjames1793" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

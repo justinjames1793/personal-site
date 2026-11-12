@@ -126,6 +126,28 @@ h1 {
   }
 }
 
+/* The copy of the nav pinned to the top of the screen (see global.js).
+   It sits just above the screen and slides down when you scroll up. */
+.site-nav-pinned {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  margin: 0;
+  padding: 10px clamp(20px, 5vw, 72px);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  transform: translateY(-105%);
+  transition: transform .25s ease;
+
+  &.shown {
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
 /* Phones: smaller tabs so they fit, centered under the logo */
 @media (max-width: 480px) {
   .tabs {
@@ -1025,6 +1047,84 @@ html:has(.lightbox[open]) {
   /* Links jump below the sticky bar instead of hiding under it */
   [id] {
     scroll-margin-top: 80px;
+
+    /* ...and below the pinned nav too, when it's showing */
+    :root.nav-shown & {
+      scroll-margin-top: calc(80px + var(--pinned-h, 0px));
+    }
+  }
+
+  /* Email, LinkedIn and GitHub in the green header: small pills on the dark background */
+  .head-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+
+    a {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid color-mix(in oklch, var(--on-dark), transparent 60%);
+      border-radius: 999px;
+      color: var(--on-dark);
+      font-size: 17px;
+      text-decoration: none;
+
+      &:hover {
+        background: color-mix(in oklch, var(--on-dark), transparent 88%);
+      }
+    }
+  }
+
+  /* "Let's connect!" band at the bottom: same look as the home page's */
+  .hello {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding-block: 48px 80px;
+    border-top: 1px solid var(--border);
+
+    h2 {
+      margin: 0;
+      font-size: 40px;
+      font-weight: 400;
+    }
+  }
+
+  .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  .btn-dark {
+    background: var(--ink);
+    color: var(--on-dark);
+
+    &:hover {
+      opacity: .9;
+    }
+  }
+
+  .btn-outline {
+    border: 1px solid var(--border-strong);
+    color: var(--ink);
+
+    &:hover {
+      background: var(--soft);
+    }
   }
 
   /* Header: the same grainy forest green as "Outside of work" */
@@ -1055,6 +1155,12 @@ html:has(.lightbox[open]) {
     position: sticky;
     top: 0;
     z-index: 2;
+    transition: top .25s ease;
+
+    /* While the pinned site nav is showing, sit just below it instead of under it */
+    :root.nav-shown & {
+      top: var(--pinned-h, 0px);
+    }
     display: flex;
     gap: 4px;
     /* Lines the words up with the page content, allowing for each link's own padding */
@@ -1183,7 +1289,10 @@ html:has(.lightbox[open]) {
   }
 
   .skill-pill {
-    padding: 3px 14px;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 3px 8px 3px 14px;
     border: 1px solid var(--border-strong);
     border-radius: 999px;
     background: var(--mat);
@@ -1198,11 +1307,49 @@ html:has(.lightbox[open]) {
       color: var(--accent);
     }
 
+    /* How many places the skill shows up in: a small number in a circle */
+    .count {
+      min-width: 1.4em;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
     /* The clicked skill: solid green */
     &.selected {
       border-color: var(--accent);
       background: var(--accent);
       color: var(--on-dark);
+
+      .count {
+        background: color-mix(in oklch, var(--on-dark), transparent 80%);
+        color: var(--on-dark);
+      }
+    }
+  }
+
+  /* Parts of the page hidden by the skill filter (portfolio.js) */
+  .filtered-out {
+    display: none !important;
+  }
+
+  /* "Python ×" chip at the start of the sticky section links: clears the filter */
+  .jump-filter {
+    flex: none;
+    padding: 6px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--on-dark);
+    font: inherit;
+    font-size: 17px;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--accent-hover);
     }
   }
 
@@ -1348,6 +1495,14 @@ html:has(.lightbox[open]) {
       display: block;
       font-size: 15px;
       letter-spacing: .04em;
+      color: var(--muted);
+    }
+
+    /* One short line under a course: what I built or learned in it */
+    .note {
+      display: block;
+      margin-top: 2px;
+      font-size: 16px;
       color: var(--muted);
     }
 
@@ -1548,6 +1703,9 @@ html:has(.lightbox[open]) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
     gap: 16px;
+    /* Each card keeps its own height, so opening one card's toggle
+       doesn't stretch the cards next to it */
+    align-items: start;
 
     article {
       display: flex;
@@ -1557,6 +1715,47 @@ html:has(.lightbox[open]) {
       border: 1px solid var(--border);
       border-radius: 18px;
       background: var(--mat);
+      transition: opacity .25s;
+
+      /* The skill filter fades single cards, the same way it fades sections */
+      &.dim {
+        opacity: .3;
+      }
+    }
+
+    /* The award line under a competition's title */
+    .card-award {
+      color: var(--accent);
+    }
+
+    /* A photo (not a chart) inside a card: cropped to the same shape every time */
+    img.card-photo {
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: center 40%;
+      border: 0;
+    }
+
+    /* "How we did it" toggle inside a card: smaller and tighter than on the page */
+    .more {
+      margin: 0;
+
+      ul {
+        margin: 0 0 10px;
+        padding-left: 1.1em;
+      }
+
+      li {
+        margin-bottom: 6px;
+      }
+
+      p + p {
+        margin-top: 8px;
+      }
+    }
+
+    .team {
+      color: var(--muted);
     }
 
     h3 {

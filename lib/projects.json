@@ -24,18 +24,6 @@
     "description": "DSC 106 Project 2, a persuasive visualization built on ProPublica's dataset of civilian complaints against NYPD officers. Our group argued both sides of whether officers are held liable for allegations; I built an accountability funnel showing how few complaints end in discipline."
   },
   {
-    "title": "N-Gram Language Models from Project Gutenberg",
-    "year": "2026",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "DSC 80 project in Python: I scraped public-domain books from Project Gutenberg (respecting robots.txt crawl delays), tokenized them with regex into words, punctuation and paragraph markers, and built uniform, unigram and N-gram language models with pandas. The N-gram model is built recursively from lower-order models, computes sentence probabilities from conditional N-gram probabilities, and generates new text in the style of Shakespeare and Homer, falling back to shorter contexts when it doesn't have enough preceding words."
-  },
-  {
-    "title": "Image Processing Toolkit & KNN Classifier",
-    "year": "2026",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "DSC 20 project with Karsten Lowe: an object-oriented Python image library built from raw RGB pixel arrays. It includes negate, grayscale, rotation, brightness, pixelation and edge detection with a convolution kernel, standard and premium processing tiers with cost tracking, and a k-nearest-neighbors classifier that labels images (for example, daytime vs. nighttime) by Euclidean pixel distance."
-  },
-  {
     "title": "UC San Diego DataFest 2026",
     "year": "2026",
     "image": "https://dsc106.com/labs/lab02/images/empty.svg",
@@ -70,17 +58,5 @@
     "year": "2025",
     "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "Founded a community wellness brand in Hermosa Beach built around beach ice-bath events. I ran logistics, marketing and sales, coordinated partners and sponsors, and used attendance data to adjust outreach and grow engagement."
-  },
-  {
-    "title": "Movie Review Analysis System",
-    "year": "2023",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "A C++ text-search application over large sets of movie reviews. It uses a hash table for fast keyword lookup and a priority queue to rank results by relevance, with an object-oriented design built to scale to lots of text."
-  },
-  {
-    "title": "Interactive Campus Map",
-    "year": "2022",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "A Google Maps-style web app recreating Stanford's campus map in HTML, CSS and JavaScript, with zoom, panning and clickable building markers."
   }
 ]
