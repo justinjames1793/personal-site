@@ -16,12 +16,10 @@ let pages = [
   // bottom of each page (and in the Portfolio header), so the nav stays short.
 ];
 
-// Where the site's root is, depending on where it's running:
-// - Locally (Live Server), the site sits at the server root → "/"
-// - On GitHub Pages, it lives under the repo name → "/personal-site/"
-const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
-  ? "/"                // Local server
-  : "/personal-site/"; // GitHub Pages repo name
+// Where the site's root is. The site lives at the root of its domain both
+// locally (Live Server) and live at https://justinjames.dev, so it's "/".
+// (Before the custom domain, GitHub Pages served it from "/personal-site/".)
+const BASE_PATH = "/";
 
 // Create an empty <nav> and put it at the top of the page.
 // The home page has a full-screen hero photo, so there the nav goes inside the
