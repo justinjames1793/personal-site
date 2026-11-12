@@ -840,6 +840,31 @@ form button {
     background: #000;
   }
 
+  /* The Mont Blanc film with its editing credit underneath */
+  .film-figure {
+    margin: 0; /* <figure> has browser-default side margins */
+
+    .film {
+      display: block; /* removes the small gap under inline videos */
+    }
+
+    figcaption {
+      margin-top: 8px;
+      font-size: 17px;
+      color: var(--on-dark-muted);
+
+      /* Light green so the link reads on the dark background */
+      a {
+        color: var(--on-dark-accent);
+        text-underline-offset: 3px;
+
+        &:hover {
+          color: var(--on-dark);
+        }
+      }
+    }
+  }
+
   /* Mont Blanc collage: a mix of big and small tiles. Rows are a fixed height,
      and "dense" lets smaller photos fill any gaps. The sizes below add up to
      full rows, so no holes are left. */
